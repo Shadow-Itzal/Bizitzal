@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- parte superior de sitio web -->
+    <title>Bizitzal | Kits Creativos y DIY</title>
+    <!-- link para favicon -->
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
+    <!-- meta para SEO basico -->
+    <meta name="description"
+        content="Tienda de kits de manualidades: tejidos, amigurumi, resina, lettering y más. Todo lo que necesitas para crear." />
+
+    <!-- fuente(s): cuerpo y titulares (limitadas a 2 familias) -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;700&family=Poppins:wght@600;800&display=swap"
+        rel="stylesheet">
+
+    <!-- link para enlazar con css -->
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body>
+
+    <!-- ===========
+        Header / Navbar
+        Comentario: Barra fija con logo, nav y carrito.
+    ============= -->
+
+    <header>
+        <div class="container nav">
+
+            <!-- Lado izquierdo: marca / logo -->
+            <div class="marca">
+                <img src="./asset/img/Logo-negro-copia.jpg" alt="Logo Bizitzal" />
+                <div>
+                    <h1>Bizitzal</h1>
+                    <div class="palabras">
+                        Kits Creativos & DIY
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navegación principal (enlaces internos) -->
+            <nav>
+                <ul>
+                    <li><a href="#home">Inicio</a></li>
+                    <li><a href="#kits">Kits</a></li>
+                    <li><a href="#reviews">Reseñas</a></li>
+                    <li><a href="#about">Nosotros</a></li>
+                    <li><a href="#contact">Contacto</a></li>
+                </ul>
+            </nav>
+
+            <!-- Icono de carrito con contador (se actualiza por JS) -->
+            <div class="carrito" id="boton_carrito" aria-label="Abrir carrito">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M6 6h15l-1.5 9h-12L4 2H2" stroke="white" stroke-width="1.2" stroke-linecap="round"
+                        stroke-linejoin="round" opacity="0.9" />
+                </svg>
+                <div class="contador" id="contador_carrito">0</div>
+            </div>
+
+        </div>
+    </header>
+
+    <!-- ===========
+        Main / Contenido Principal
+        Comentario: Secciones principales del sitio (hero, productos, reseñas, nosotros, contacto)
+    ============= -->
+
+    <main class="container">
+
+        <!-- ===========
+            Hero: imagen y CTA
+            Comentario: Hero, es la seccion principal y destacada, a menudo lo primero que ve el usuario. Se llama "hero section" (sección de héroe) y suele incluir un titulo llamativo, una breve descripción y una llamada a la acción (CTA).
+        ============= -->
+
+        <section class="seccion_heroe" id="home">
+            <div class="heroe_interior">
+                <h2 class="titulo_heroe">Bizitzal</h2>
+                <div class="heroe_izquierda">
+                    <p><b>¡Todo lo que necesitas para crear con tus manos y tu corazón! </b></p>
+                    <p><b>Kits completos para proyectos creativos, desde principiantes hasta avanzados.</b></p>
+                    <div class="botones_heroe">
+                        <button class="btn_primario" onclick="scrollToKits()">Ver Kits</button> 
+                        <!-- JS: function scrollToKits() {
+                                    // busca el elemento con id="kits" y hace scroll hasta él, en una forma suave.
+                                    const seccionKits = document.getElementById('kits');
+                                    seccionKits.scrollIntoView({behavior: smooth});
+                                    }-->
+                        <button class="btn_fantasma_1" onclick="openWhatsApp()">Contacto rápido</button>
+                        <!-- JS: function openWhatsApp() {
+                                    // Escribí tu número en formato internacional, sin + ni 0 delante.
+                                    // Ejemplo: Argentina 54, número 11 1234 5678 -> 541112345678
+                                    const phoneNumber = "541112345678";
+
+                                    // Podés incluir un mensaje predeterminado (opcional)
+                                    const message = "¡Hola! Quisiera más información.";
+
+                                    // Arma el enlace oficial de WhatsApp
+                                    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+
+                                    // Abre WhatsApp en una nueva pestaña
+                                    window.open(url, "_blank");
+                                } -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- PRODUCTOS DESTACADOS -->
+        <section class="productos" id="kits">
+            <h3 style="margin:6px 0 12px; font-family:'Poppins'">Kits Destacados</h3>
+            <div class="grid" id="grid_productos">
+
+                <!-- Card: Tejido -->
+                <article class="tarjeta" data-id="tejido-gorro-bufanda" data-name="Tejido: Gorro y Bufanda" data-price="35"
+                    data-img="./asset/img/tejido.jpg">
+                    <img src="./asset/img/tejido.jpg" alt="Gorro y bufanda kit" onerror="this.style.opacity=0.6" />
+                    <div class="metadatos">
+                        <span class="etiqueta">Tejido • Principiante</span>
+                        <span class="precio">$35</span>
+                    </div>
+                    <h3>Tejido: Gorro y Bufanda</h3>
+                    <p>Kit con lanas, agujas y patrón paso a paso en PDF.</p>
+                    <div class="acciones">
+                        <button class="btn_fantasma" onclick="viewProduct(this)">Ver más</button>
+                        <button class="btn_primario" onclick="addToCartFromBtn(this)">Agregar al carrito</button>
+                    </div>
+                </article>
+
+                <!-- Card: Amigurumi -->
+                <article class="tarjeta" data-id="amigurumi-panda" data-name="Amigurumi: Mini Panda" data-price="28"
+                    data-img="./asset/img/amigurumi.jpg">
+                    <img src="./asset/img/amigurumi.jpg" alt="Mini panda amigurumi" />
+                    <div class="metadatos">
+                        <span class="etiqueta">Amigurumi • Intermedio</span>
+                        <span class="precio">$28</span>
+                    </div>
+                    <h3>Amigurumi: Mini Panda</h3>
+                    <p>Hilos, relleno, aguja y patrón para crear tu panda.</p>
+                    <div class="acciones">
+                        <button class="btn_fantasma" onclick="viewProduct(this)">Ver más</button>
+                        <button class="btn_primario" onclick="addToCartFromBtn(this)">Agregar al carrito</button>
+                    </div>
+                </article>
+
+                <!-- Card: Joyería en resina -->
+                <article class="tarjeta" data-id="joyeria-resina" data-name="Joyería en Resina" data-price="45"
+                    data-img="./asset/img/joyeria-resina-2.avif">
+                    <img src="./asset/img/joyeria-resina-2.avif" alt="Joyería en resina" />
+                    <div class="metadatos">
+                        <span class="etiqueta">Resina • Avanzado</span>
+                        <span class="precio">$45</span>
+                    </div>
+                    <h3>Joyería en Resina</h3>
+                    <p>Resina, moldes, pigmentos y guía para crear piezas únicas.</p>
+                    <div class="acciones">
+                        <button class="btn_fantasma" onclick="viewProduct(this)">Ver más</button>
+                        <button class="btn_primario" onclick="addToCartFromBtn(this)">Agregar al carrito</button>
+                    </div>
+                </article>
+
+                <!-- Card: Lettering -->
+                <article class="tarjeta" data-id="lettering-creative" data-name="Lettering Creativo" data-price="22"
+                    data-img="./asset/img/lettering-2.jpg">
+                    <img src="./asset/img/lettering-2.jpg" alt="Lettering creativo" />
+                    <div class="metadatos">
+                        <span class="etiqueta">Lettering • Principiante</span>
+                        <span class="precio">$22</span>
+                    </div>
+                    <h3>Lettering Creativo</h3>
+                    <p>Set de marcadores, papel especial y tutorial para practicar.</p>
+                    <div class="acciones">
+                        <button class="btn_fantasma" onclick="viewProduct(this)">Ver más</button>
+                        <button class="btn_primario" onclick="addToCartFromBtn(this)">Agregar al carrito</button>
+                    </div>
+                </article>
+
+                <!-- Card: Velas decorativa -->
+                <article class="tarjeta" data-id="velas-decorativa" data-name="Velas decorativas" data-price="30"
+                    data-img="./asset/img/vela-decorativa-2.jpg">
+                    <img src="./asset/img/vela-decorativa-2.jpg" alt="Velas decorativas" />
+                    <div class="metadatos">
+                        <span class="etiqueta">Velas • Intermedio</span>
+                        <span class="precio">$30</span>
+                    </div>
+                    <h3>Velas Decorativas</h3>
+                    <p>Materiales para crear velas decorativas y aromaticas.</p>
+                    <div class="acciones">
+                        <button class="btn_fantasma" onclick="viewProduct(this)">Ver más</button>
+                        <button class="btn_primario" onclick="addToCartFromBtn(this)">Agregar al carrito</button>
+                    </div>
+                </article>
+
+                <!-- Card: Velas aromáticas -->
+                <article class="tarjeta" data-id="velas-aromaticas" data-name="Velas Aromáticas" data-price="18"
+                    data-img="./asset/img/vela-aromatica.avif">
+                    <img src="./asset/img/vela-aromatica.avif" alt="Velas aromaticas" />
+                    <div class="metadatos">
+                        <span class="etiqueta">Velas • Principiante</span>
+                        <span class="precio">$18</span>
+                    </div>
+                    <h3>Velas Aromáticas</h3>
+                    <p>Kit sencillo con fragancias y mechas para principiantes.</p>
+                    <div class="acciones">
+                        <button class="btn_fantasma" onclick="viewProduct(this)">Ver más</button>
+                        <button class="btn_primario" onclick="addToCartFromBtn(this)">Agregar al carrito</button>
+                    </div>
+                </article>
+
+                <!-- Card: Pintura en lienzo -->
+                <article class="tarjeta" data-id="pintura-lienzo-atardecer" data-name="Pintura: Atardecer" data-price="40"
+                    data-img="./asset/img/pintura-lienzo-atardecer.jpg">
+                    <img src="./asset/img/pintura-lienzo-atardecer.jpg" alt="Pintura atardecer" />
+                    <div class="metadatos">
+                        <span class="etiqueta">Pintura • Intermedio</span>
+                        <span class="precio">$40</span>
+                    </div>
+                    <h3>Pintura en Lienzo: Atardecer</h3>
+                    <p>Set con acrílicos, pinceles y guía paso a paso.</p>
+                    <div class="acciones">
+                        <button class="btn_fantasma" onclick="viewProduct(this)">Ver más</button>
+                        <button class="btn_primario" onclick="addToCartFromBtn(this)">Agregar al carrito</button>
+                    </div>
+                </article>
+
+                <!-- Card: Origami -->
+                <article class="tarjeta" data-id="origami-japones" data-name="Origami Japonés" data-price="15"
+                    data-img="./asset/img/origami-japones.jpg">
+                    <img src="./asset/img/origami-japones.jpg" alt="Origami japones" />
+                    <div class="metadatos">
+                        <span class="etiqueta">Origami • Principiante</span>
+                        <span class="precio">$15</span>
+                    </div>
+                    <h3>Origami Japonés</h3>
+                    <p>Papel de calidad y patrones para crear figuras tradicionales.</p>
+                    <div class="acciones">
+                        <button class="btn_fantasma" onclick="viewProduct(this)">Ver más</button>
+                        <button class="btn_primario" onclick="addToCartFromBtn(this)">Agregar al carrito</button>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- ===============
+            RESEÑAS
+            Comentario: Testimonios de clientes
+        =============== -->
+
+        <section class="seccion_reseñas" id="reviews">
+            <div class="reseñas_contenedor">
+                <h3 style="margin:6px 0 12px; font-family:'Poppins'">Lo que dicen nuestros clientes</h3>
+                <p class="reseñas_subtitulos">Calidad, pasión y resultados.</p>
+
+                <div class="reseñas_grid">
+
+                    <div class="reseña_tarjeta">
+                        <p class="reseña_comilla">❝</p>
+                        <p class="reseña_texto">"El kit de Joyería en Resina es increíble, las instrucciones son claras y los materiales de súper calidad. Pude crear mis primeros pendientes sin problemas."</p>
+                        <div class="puntuacion">⭐⭐⭐⭐⭐</div>
+                        <div class="reseña_autor">
+                            <img src="https://placehold.co/40x40/333/A8C66E?text=L" alt="Avatar de Laura"
+                                class="reseña_avatar">
+                            <div>
+                                <p class="reseña_nombre">Laura M.</p>
+                                <p class="reseña_kit">Compradora del Kit Resina</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="reseña_tarjeta">
+                        <p class="reseña_comilla">❝</p>
+                        <p class="reseña_texto">"Compré el kit de Amigurumi para mi hija y le encantó. Ahora tenemos un Mini Panda hecho por ella. La mejor tienda de DIY que he encontrado."</p>
+                        <div class="puntuacion">⭐⭐⭐⭐⭐</div>
+                        <div class="reseña_autor">
+                            <img src="https://placehold.co/40x40/333/A8C66E?text=J" alt="Avatar de Javier"
+                                class="reseña_avatar">
+                            <div>
+                                <p class="reseña_nombre">Javier P.</p>
+                                <p class="reseña_kit">Comprador del Kit Amigurumi</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="reseña_tarjeta">
+                        <p class="reseña_comilla">❝</p>
+                        <p class="reseña_texto">"Una experiencia de compra excelente. El envío fue rápido y el kit de velas aromáticas me ha ayudado a relajarme y crear algo hermoso para mi hogar."</p>
+                        <div class="puntuacion">⭐⭐⭐⭐⭐</div>
+                        <div class="reseña_autor">
+                            <img src="https://placehold.co/40x40/333/A8C66E?text=S" alt="Avatar de Sara"
+                                class="reseña_avatar">
+                            <div>
+                                <p class="reseña_nombre">Sara G.</p>
+                                <p class="reseña_kit">Compradora del Kit Velas</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ============== 
+            NOSOTROS Y CONTACTO 
+        ================= -->
+        <section class="dos_columnas" id="about">
+
+            <div class="acerca tarjeta" style="padding:18px">
+                <h3 class="titulos">🌿 Nuestra esencia</h3>
+                <p class="parrafo_nosotros"><b>Bizitzal</b> nació con una idea clara: despertar la creatividad que a veces dejamos en la sombra.</p>
+                <p class="parrafo_nosotros">Su nombre combina dos palabras del euskera —<span>bizitza</span> (vida) e <i>itzal</i> (sombra)— y representa ese espacio interior donde habita la inspiración, esperando ser descubierta.</p>
+                <p class="parrafo_nosotros">Creemos que crear no es solo hacer algo con las manos, sino también con el alma.</p>
+                <p class="parrafo_nosotros">Por eso diseñamos kits creativos que te invitan a reconectarte contigo mismo, transformar momentos en experiencias y dar forma a lo que imaginas.</p>
+                <p class="parrafo_nosotros">Cada proyecto que emprendes con <b>Bizitzal</b> es una pequeña historia de vida:</p>
+                <p class="parrafo_nosotros">un recordatorio de que incluso en la sombra, siempre hay luz. ✨</p>
+                <p class="parrafo_nosotros centrado">Síguenos en redes para ver tutoriales y novedades.</p>
+                <div class="redes_sociales" aria-hidden="true">
+                    <a href="#">Instagram</a>
+                    <a href="#">Facebook</a>
+                    <a href="#">Pinterest</a>
+                </div>
+            </div>
+
+            <div class="contacto tarjeta" id="contact" style="padding:18px">
+                <h3 class="titulos">Contacto</h3>
+                <!-- Form: los campos están pensados para integrarse con un backend en el futuro. -->
+                <form id="formulario_contacto" onsubmit="submitContact(event)">
+                    <input type="text" id="entrada_nombre" placeholder="Tu nombre" required />
+                    <input type="email" id="entrada_correo" placeholder="Tu correo" required />
+                    <textarea id="entrada_mensaje" rows="5" placeholder="¿En qué podemos ayudarte?" required></textarea>
+                    <div style="display:flex;gap:8px;align-items:center">
+                        <button class="btn_primario" type="submit">Enviar mensaje</button>
+                        <button class="btn_fantasma" type="button" onclick="openWhatsApp()">Contactar por WhatsApp</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+        <br>
+
+
+    </main>
+
+    <!-- =============== FOOTER ===================================
+            Comentario: Información legal y newsletter
+    ================================================================ -->
+    <footer class="pie_pagina" id="pie_pagina" >
+        <div class="container grid_pie_pagina">
+
+            <div class="columna_pie_pagina columna_marca">
+                <div class="marca">
+                    <img src="./asset/img/Logo-negro-copia.jpg" alt="Logo Bizitzal" />
+                    <div>
+                        <h3>Bizitzal</h3>
+                        <p class="lema">Inspira tu creatividad.</p>
+                    </div>
+                </div>
+                <div class="enlaces_sociales">
+                    <a href="#" aria-label="Instagram">
+                        <!-- SVG Instagram -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                        </svg>
+                    </a>
+                    <a href="#" aria-label="Facebook">
+                        <!-- SVG Facebook -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                        </svg>
+                    </a>
+                    <a href="#" aria-label="Pinterest">
+                        <!-- SVG Pinterest -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12.016 2.016c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8zM15 15l-3-3v-5h3v5l-3 3z"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+
+            <div class="columna_pie_pagina informacion_legal">
+                <h4>Información Legal</h4>
+                <ul>
+                    <li><a href="#">Términos y Condiciones</a></li>
+                    <li><a href="#">Política de Privacidad</a></li>
+                    <li><a href="#">Política de Envíos</a></li>
+                    <li><a href="#">Devoluciones</a></li>
+                </ul>
+            </div>
+
+            <div class="columna_pie_pagina columna_newsletter">
+                <h4 style="text-align: center;">Newsletter</h4>
+                <p>Suscríbete para recibir ofertas y tips creativos.</p>
+                <div class="formulario_newsletter">
+                    <input type="email" id="entrada_newsletter" placeholder="Tu correo electrónico" />
+                    <button class="btn_primario" onclick="/* subscribe() se ha removido */">Suscribir</button>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="derechos_autor">
+            <p>&copy; 2025 Bizitzal Kits. Todos los derechos reservados.</p>
+            <p>Diseño y concepto creativo: <i>Marta Mariana Dominguez</i>.</p>
+        </div>
+
+    </footer>
+
+
+
+
+</body>
+</html>
