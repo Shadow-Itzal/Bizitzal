@@ -4,7 +4,7 @@
 
 ---
 
-# 💻 Front-End JS 2025 - Proyecto Final 🎓✨
+# 💻 Proyecto Final 🎓✨
 
 
 # 🌿 Bizitzal – Sitio web de kits creativos

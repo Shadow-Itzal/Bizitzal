@@ -397,14 +397,32 @@
                 </ul>
             </div>
 
+
             <div class="columna_pie_pagina columna_newsletter">
                 <h4 style="text-align: center;">Newsletter</h4>
                 <p>Suscríbete para recibir ofertas y tips creativos.</p>
-                <div class="formulario_newsletter">
-                    <input type="email" id="entrada_newsletter" placeholder="Tu correo electrónico" />
-                    <button class="btn_primario" onclick="/* subscribe() se ha removido */">Suscribir</button>
-                </div>
+                <form id="form_newsletter" action="https://formspree.io/f/mrbyonpr" method="POST">
+                    <div class="formulario_newsletter">
+                        <input 
+                            type="email" 
+                            id="entrada_newsletter" 
+                            name="email" required placeholder="Escribe tu correo electrónico"
+                        />
+                        <button class="btn_primario" type="submit">Suscribirse</button>
+                    </div>
+                    <p id="mensaje_newsletter" class="mensaje_newsletter"></p>
+                </form>
             </div>
+
+
+
+
+
+
+
+
+
+
 
         </div>
 
@@ -416,7 +434,8 @@
     </footer>
 
 
-
+    <!-- link para unir con JS -->
+    <script src="./js/script.js"></script>
 
 </body>
 </html>
