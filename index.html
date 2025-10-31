@@ -328,11 +328,10 @@
 
             <div class="contacto tarjeta" id="contact" style="padding:18px">
                 <h3 class="titulos">Contacto</h3>
-                <!-- Form: los campos están pensados para integrarse con un backend en el futuro. -->
-                <form id="formulario_contacto" onsubmit="submitContact(event)">
-                    <input type="text" id="entrada_nombre" placeholder="Tu nombre" required />
-                    <input type="email" id="entrada_correo" placeholder="Tu correo" required />
-                    <textarea id="entrada_mensaje" rows="5" placeholder="¿En qué podemos ayudarte?" required></textarea>
+                <form id="formulario_contacto" action="https://formspree.io/f/xblplrkl" method="POST">
+                    <input type="text" id="entrada_nombre" name="nombre" placeholder="Tu nombre" required />
+                    <input type="email" id="entrada_correo" name="email" placeholder="Tu correo" required />
+                    <textarea id="entrada_mensaje" name="mensaje" rows="5" placeholder="¿En qué podemos ayudarte?" required></textarea>
                     <div style="display:flex;gap:8px;align-items:center">
                         <button class="btn_primario" type="submit">Enviar mensaje</button>
                         <button class="btn_fantasma" type="button" onclick="openWhatsApp()">Contactar por WhatsApp</button>
