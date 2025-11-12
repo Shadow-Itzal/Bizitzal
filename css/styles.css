@@ -270,6 +270,53 @@ nav a:hover {
 }
 
 
+
+/* --- Estilo destacado para el mensaje de contacto --- */
+.mensaje_contacto {
+    background: rgba(43, 47, 51, 0.9); /* color similar a var(--color-tarjeta), con leve transparencia */
+    border: 1px solid var(--color-acento);
+    color: var(--color-acento);
+    font-weight: 400;
+    padding: 10px 14px;
+    border-radius: 10px;
+    margin-top: 10px;
+    display: inline-block;
+    opacity: 0;
+    transform: scale(0.97);
+    transition: opacity 0.6s ease, transform 0.3s ease;
+}
+
+.mensaje_contacto.visible {
+    opacity: 1;
+    transform: scale(1.01);
+}
+
+/* darle color a este simbolo 💬 */
+.icono_mensaje {
+    color: var(--color-acento);
+    font-size: 1.1em;
+    margin-right: 6px;
+    vertical-align: middle;
+    display: inline-block;
+    animation: latido 1.8s ease-in-out infinite;
+}
+
+/* Animación suave de latido */
+@keyframes latido {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.25);
+        opacity: 0.85;
+    }
+}
+
+
+
+
+
 /* ===============================
     Productos destacados (grid)
 ================================== */

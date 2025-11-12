@@ -1,3 +1,41 @@
+
+//  --- Seccion Heroe --- 
+
+// --- Seccion Heroe --- 
+
+function scrollToKits() {
+    const seccionKits = document.getElementById('kits');
+    if (seccionKits) {
+        seccionKits.scrollIntoView({ behavior: "smooth" });
+    }
+}
+
+// función compartida para los botones de contacto por WhatsApp (héroe y formulario)
+function openWhatsApp(origen) {
+    mostrarMensajeContacto(
+        "Opción de contacto por WhatsApp: próximamente disponible.",
+        false,
+        origen
+    );
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // --- Funciones de Contacto de formulario ---
 
 
@@ -62,20 +100,71 @@ formContacto.addEventListener("submit", async function (event) {
 
 
 // Función para mostrar mensaje
-function mostrarMensajeContacto(texto, esError = false) {
+// function mostrarMensajeContacto(texto, esError = false) {
+//    mensajeEstado.textContent = texto;
+//    mensajeEstado.style.color = esError ? "#ff6b6b" : "var(--color-acento)";
+//    mensajeEstado.style.opacity = "1";
+//
+//    setTimeout(() => {
+//        mensajeEstado.style.opacity = "0";
+//    }, 4000);
+//} 
+
+/* // cuando aprieta boton whatsapp y da el mensaje
+function openWhatsApp() {
+    mostrarMensajeContacto("💬 Opción de contacto por WhatsApp: próximamente disponible.");
+} */
+
+/* function mostrarMensajeContacto(texto, esError = false) {
     mensajeEstado.textContent = texto;
     mensajeEstado.style.color = esError ? "#ff6b6b" : "var(--color-acento)";
+    
+    // Aplica la clase para la animación visual
+    mensajeEstado.classList.add("mostrar");
+
+    // Asegura que se vea
     mensajeEstado.style.opacity = "1";
 
+    // Desaparece suavemente después de 4 segundos
     setTimeout(() => {
+        mensajeEstado.classList.remove("mostrar");
         mensajeEstado.style.opacity = "0";
+    }, 4000);
+} */
+
+
+function mostrarMensajeContacto(texto, esError = false, origen = null) {
+    // Crear el mensaje dinámico
+    const mensaje = document.createElement("p");
+    /* mensaje.textContent = texto; */
+mensaje.innerHTML = `<span class="icono_mensaje">💬</span> ${texto.replace("💬", "").trim()}`;
+
+    mensaje.className = "mensaje_contacto";
+    mensaje.style.color = esError ? "#ff6b6b" : "var(--color-acento)";
+    
+    // Insertar debajo del botón presionado
+    if (origen) {
+        origen.insertAdjacentElement("afterend", mensaje);
+    } else {
+        // Si no hay origen, como respaldo se agrega al formulario
+        formContacto.appendChild(mensaje);
+    }
+
+    // Mostrar animación
+    setTimeout(() => mensaje.classList.add("visible"), 50);
+
+    // Eliminar después de unos segundos
+    setTimeout(() => {
+        mensaje.classList.remove("visible");
+        setTimeout(() => mensaje.remove(), 800);
     }, 4000);
 }
 
- 
-function openWhatsApp() {
-    mostrarMensajeContacto("💬 Opción de contacto por WhatsApp: próximamente disponible.");
-}
+
+
+
+
+
 
 
 

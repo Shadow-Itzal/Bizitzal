@@ -85,26 +85,8 @@
                     <p><b>Kits completos para proyectos creativos, desde principiantes hasta avanzados.</b></p>
                     <div class="botones_heroe">
                         <button class="btn_primario" onclick="scrollToKits()">Ver Kits</button> 
-                        <!-- JS: function scrollToKits() {
-                                    // busca el elemento con id="kits" y hace scroll hasta él, en una forma suave.
-                                    const seccionKits = document.getElementById('kits');
-                                    seccionKits.scrollIntoView({behavior: smooth});
-                                    }-->
-                        <button class="btn_fantasma_1" onclick="openWhatsApp()">Contacto rápido</button>
-                        <!-- JS: function openWhatsApp() {
-                                    // Escribí tu número en formato internacional, sin + ni 0 delante.
-                                    // Ejemplo: Argentina 54, número 11 1234 5678 -> 541112345678
-                                    const phoneNumber = "541112345678";
 
-                                    // Podés incluir un mensaje predeterminado (opcional)
-                                    const message = "¡Hola! Quisiera más información.";
-
-                                    // Arma el enlace oficial de WhatsApp
-                                    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-
-                                    // Abre WhatsApp en una nueva pestaña
-                                    window.open(url, "_blank");
-                                } -->
+                        <button class="btn_fantasma_1" onclick="openWhatsApp(this)">Contacto rápido</button>
                     </div>
                 </div>
             </div>
@@ -334,7 +316,7 @@
                     <textarea id="entrada_mensaje" name="mensaje" rows="5" placeholder="¿En qué podemos ayudarte?" required></textarea>
                     <div style="display:flex;gap:8px;align-items:center">
                         <button class="btn_primario" type="submit">Enviar mensaje</button>
-                        <button class="btn_fantasma" type="button" onclick="openWhatsApp()">Contactar por WhatsApp</button>
+                        <button class="btn_fantasma" type="button" onclick="openWhatsApp(this)">Contactar por WhatsApp</button>
                     </div>
                 </form>
             </div>
