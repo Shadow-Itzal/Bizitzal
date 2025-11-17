@@ -755,3 +755,74 @@ textarea::placeholder {
         grid-template-columns: 1fr;
     }
 }
+
+
+/* ----------------------------- */
+/* ----  bootstrap  ----- */
+/* ----------------------------- */
+
+/* =========================================================
+   INTEGRACIÓN Y SOBREESCRITURA DE BOOTSTRAP
+   ========================================================= */
+
+/* 1. Botón Principal (usamos la clase .btn-success de Bootstrap) */
+.btn-success,
+.btn-success:hover,
+.btn-success:focus,
+.btn-success:active {
+    /* Fondo del botón: Usa tu color de acento (verde) */
+    background-color: var(--color-acento) !important; 
+    /* Borde del botón: Usa tu color de acento */
+    border-color: var(--color-acento) !important;
+    /* Color del texto: Usa tu color de texto principal (blanco) */
+    color: var(--color-texto) !important;
+    
+    /* Pequeño ajuste visual */
+    border-radius: var(--radius); /* Usa el radio que ya definiste */
+    font-weight: 600;
+}
+
+/* 2. Color de Éxito de Bootstrap (para iconos y texto de precio) */
+.text-success {
+    /* Usa tu color de acento para el texto de 'success' */
+    color: var(--color-acento) !important;
+}
+
+/* 3. Fondo de la Sección de Productos Relacionados (.bg-light) */
+.bg-light {
+    /* En el código de producto, la sección relacionada usa .bg-light.
+       La cambiamos a tu color de tarjeta/sección para el modo oscuro. */
+    background-color: var(--color-tarjeta) !important;
+    /* Aseguramos que el texto sea visible en este fondo */
+    color: var(--color-texto);
+}
+
+/* 4. Estilos para la Ficha de Producto */
+.lead, h1, h5, ul {
+    /* Aseguramos que todos los textos sean claros en el fondo oscuro */
+    color: var(--color-texto);
+}
+
+/* 5. Input de Cantidad (form-control) */
+.form-control {
+    /* Fondo */
+    background-color: var(--color-fondo); 
+    /* Texto */
+    color: var(--color-texto);
+    /* Borde sutil */
+    border-color: var(--color-tarjeta);
+}
+.form-control:focus {
+    /* Resaltar con el color de acento al enfocarse */
+    border-color: var(--color-acento);
+    box-shadow: 0 0 0 0.25rem rgba(121, 199, 122, 0.25); /* Sombra de acento */
+}
+
+
+/* styles.css */
+/* Empuja todo el contenido de la página hacia abajo, 
+   justo por debajo del header fijo. */
+.main {
+    padding-top: var(--alto-header); 
+    /* Si tu header es 72px, el contenido empieza en 72px */
+}
