@@ -1,16 +1,78 @@
+/*  =========================================================================
+//        script.js  —  Código global para todo el sitio (header, forms, carrito)
+//    ========================================================================== */
 
-//  --- Seccion Heroe --- 
+/*    Qué contiene (solo responsabilidades globales):
+        - scrollToKits() (hero)
+        - viewProduct()  -> redirige a la página de producto con el ID correcto
+        - openWhatsApp() + mostrarMensajeContacto() (feedback visual)
+        - Newsletter (form_newsletter) handling
+        - Contact form handling (formulario_contacto)
+        - Loader (hide si existe)
+        - Sistema global de carrito:
+            obtenerCarrito(), guardarCarrito(), agregarAlCarrito(), actualizarContadorCarrito()
+        - Funciones auxiliares para rutas relativas (detecta si estamos en /pages/)
+    
+    ------------------------------------------------------------------------- 
+*/
 
-// --- Seccion Heroe --- 
-
-function scrollToKits() {
-    const seccionKits = document.getElementById('kits');
-    if (seccionKits) {
-        seccionKits.scrollIntoView({ behavior: "smooth" });
-    }
+/*  -------------------------  
+        UTIL: calcular base para rutas de /data/ (compatible con /pages/)
+    ------------------------- */
+function dataBasePath() {
+    // Si la ruta contiene /pages/ asumimos que estamos en una subcarpeta y necesitamos ../data/
+    return window.location.pathname.includes("/pages/")
+        ? "../data/"
+        : "./data/";
 }
 
-// función compartida para los botones de contacto por WhatsApp (héroe y formulario)
+/*  -------------------------
+        HERO
+    ------------------------- */
+function scrollToKits() {
+    const seccionKits = document.getElementById("kits");
+    if (seccionKits) seccionKits.scrollIntoView({ behavior: "smooth" });
+}
+
+/*  -------------------------
+        VIEW PRODUCT
+    - Busca en kits_bizitzal.json por el atributo data-name de la tarjeta
+    - Redirige a descripcion_producto.html?id=<ID del JSON>
+    ------------------------- */
+
+/* Reemplaza la función viewProduct antigua por esta: */
+
+function viewProduct(btnOrEl) {
+    // 1. Encontrar la tarjeta padre
+    const tarjeta = btnOrEl.closest("article");
+    
+    if (!tarjeta) {
+        console.warn("No se encontró la tarjeta.");
+        return;
+    }
+
+    // 2. Obtener el ID directamente del HTML (data-id)
+    const idProducto = tarjeta.dataset.id;
+    
+    if (!idProducto) {
+        console.error("La tarjeta no tiene un data-id.");
+        return;
+    }
+
+    // 3. Definir la ruta correcta dependiendo de dónde estemos
+    const estoyEnPages = window.location.pathname.includes("/pages/");
+    const baseRoute = estoyEnPages ? "./descripcion_producto.html" : "./pages/descripcion_producto.html";
+
+    // 4. Redirigir CON el ID
+    window.location.href = `${baseRoute}?id=${encodeURIComponent(idProducto)}`;
+}
+
+// Exponer globalmente para que los onclick inline funcionen
+window.viewProduct = viewProduct;
+
+/*  -------------------------
+        WHATSAPP / MENSAJES DE CONTACTO (pequeño toast visual)
+    ------------------------- */
 function openWhatsApp(origen) {
     mostrarMensajeContacto(
         "Opción de contacto por WhatsApp: próximamente disponible.",
@@ -19,228 +81,280 @@ function openWhatsApp(origen) {
     );
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// --- Funciones de Contacto de formulario ---
-
-
-const formContacto = document.getElementById("formulario_contacto");
-const nombreContacto = document.getElementById("entrada_nombre");
-const correoContacto = document.getElementById("entrada_correo");
-const mensajeContacto = document.getElementById("entrada_mensaje");
-
-// Crear un elemento dinámico para mostrar mensajes (exito/error)
-const mensajeEstado = document.createElement("p");
-mensajeEstado.id = "mensaje_contacto";
-mensajeEstado.style.textAlign = "center";
-mensajeEstado.style.marginTop = "10px";
-mensajeEstado.style.opacity = "0";
-mensajeEstado.style.transition = "opacity 0.8s ease";
-formContacto.appendChild(mensajeEstado);
-
-// Escucha el envío del formulario
-formContacto.addEventListener("submit", async function (event) {
-    event.preventDefault();
-
-    const nombre = nombreContacto.value.trim();
-    const correo = correoContacto.value.trim();
-    const mensaje = mensajeContacto.value.trim();
-    const boton = formContacto.querySelector('button[type="submit"]');
-
-    if (!nombre || !correo.includes("@") || !mensaje) {
-        mostrarMensajeContacto("Por favor completa todos los campos correctamente.", true);
-        return;
-    }
-
-    // 🔄 Mostrar animación de “enviando…”
-    boton.disabled = true;
-    const textoOriginal = boton.innerHTML;
-    boton.innerHTML = `<span class="spinner"></span> Enviando...`;
-
-    const data = new FormData(formContacto);
-
-    try {
-        const response = await fetch(formContacto.action, {
-            method: formContacto.method,
-            body: data,
-            headers: { Accept: "application/json" },
-        });
-
-        if (response.ok) {
-            mostrarMensajeContacto("✅ ¡Gracias por contactarnos! Te responderemos pronto.");
-            formContacto.reset();
-        } else {
-            const errorData = await response.json();
-            console.error("Error de Formspree:", errorData);
-            mostrarMensajeContacto("❌ Error al enviar: " + (errorData.error || "Intenta nuevamente."), true);
-        }
-    } catch (error) {
-        mostrarMensajeContacto("⚠️ Error de conexión. Revisa tu internet.", true);
-    } finally {
-        // 🔁 Restaurar botón original
-        boton.disabled = false;
-        boton.innerHTML = textoOriginal;
-    }
-});
-
-
-// Función para mostrar mensaje
-// function mostrarMensajeContacto(texto, esError = false) {
-//    mensajeEstado.textContent = texto;
-//    mensajeEstado.style.color = esError ? "#ff6b6b" : "var(--color-acento)";
-//    mensajeEstado.style.opacity = "1";
-//
-//    setTimeout(() => {
-//        mensajeEstado.style.opacity = "0";
-//    }, 4000);
-//} 
-
-/* // cuando aprieta boton whatsapp y da el mensaje
-function openWhatsApp() {
-    mostrarMensajeContacto("💬 Opción de contacto por WhatsApp: próximamente disponible.");
-} */
-
-/* function mostrarMensajeContacto(texto, esError = false) {
-    mensajeEstado.textContent = texto;
-    mensajeEstado.style.color = esError ? "#ff6b6b" : "var(--color-acento)";
-    
-    // Aplica la clase para la animación visual
-    mensajeEstado.classList.add("mostrar");
-
-    // Asegura que se vea
-    mensajeEstado.style.opacity = "1";
-
-    // Desaparece suavemente después de 4 segundos
-    setTimeout(() => {
-        mensajeEstado.classList.remove("mostrar");
-        mensajeEstado.style.opacity = "0";
-    }, 4000);
-} */
-
-
+/*
+    * mostrarMensajeContacto(texto, esError=false, origenElement=null)
+    * - Crea un mensaje temporal (párrafo) bajo el elemento "origen" o en el formulario.
+*/
 function mostrarMensajeContacto(texto, esError = false, origen = null) {
-    // Crear el mensaje dinámico
     const mensaje = document.createElement("p");
-    /* mensaje.textContent = texto; */
-mensaje.innerHTML = `<span class="icono_mensaje">💬</span> ${texto.replace("💬", "").trim()}`;
-
+    mensaje.innerHTML = `<span class="icono_mensaje">💬</span> ${texto
+        .replace("💬", "")
+        .trim()}`;
     mensaje.className = "mensaje_contacto";
     mensaje.style.color = esError ? "#ff6b6b" : "var(--color-acento)";
-    
-    // Insertar debajo del botón presionado
-    if (origen) {
+
+    if (origen && origen.insertAdjacentElement) {
         origen.insertAdjacentElement("afterend", mensaje);
     } else {
-        // Si no hay origen, como respaldo se agrega al formulario
-        formContacto.appendChild(mensaje);
+        const form = document.getElementById("formulario_contacto");
+        if (form) form.appendChild(mensaje);
+        else document.body.appendChild(mensaje);
     }
 
-    // Mostrar animación
+    // Animación y destrucción
     setTimeout(() => mensaje.classList.add("visible"), 50);
-
-    // Eliminar después de unos segundos
     setTimeout(() => {
         mensaje.classList.remove("visible");
         setTimeout(() => mensaje.remove(), 800);
     }, 4000);
 }
 
+/*  -------------------------
+        FORMULARIO DE CONTACTO (index & página de producto)
+    - Usa Formspree (tu action); valida y muestra feedback
+    ------------------------- */
+(function initContactoForm() {
+    const form = document.getElementById("formulario_contacto");
+    if (!form) return;
 
+    const nombreContacto = document.getElementById("entrada_nombre");
+    const correoContacto = document.getElementById("entrada_correo");
+    const mensajeContacto = document.getElementById("entrada_mensaje");
 
+    // Mensaje dinámico
+    const mensajeEstado = document.createElement("p");
+    mensajeEstado.id = "mensaje_contacto";
+    mensajeEstado.style.textAlign = "center";
+    mensajeEstado.style.marginTop = "10px";
+    mensajeEstado.style.opacity = "0";
+    mensajeEstado.style.transition = "opacity 0.8s ease";
+    form.appendChild(mensajeEstado);
 
+    form.addEventListener("submit", async function (event) {
+        event.preventDefault();
 
+        const nombre = nombreContacto.value.trim();
+        const correo = correoContacto.value.trim();
+        const mensaje = mensajeContacto.value.trim();
+        const boton = form.querySelector('button[type="submit"]');
 
-
-
-
-
-
-
-// ---   FIN DE CONTACTO (formulario) ---
-
-
-
-
-
-
-// --- Funciones de Newsletter ---
-
-/* obtiene del HTML el formulario completo por su ID */
-const formNewsletter = document.getElementById("form_newsletter");
-/* obtiene el campo donde el usuario escribe su correo */
-const entradaNewsletter = document.getElementById("entrada_newsletter");
-/* obtiene el elemento donde se mostrara el mensaje ("¡Felicidades! o error") */
-const mensajeNewsletter = document.getElementById("mensaje_newsletter");
-
-/* Escucha el evento "submit" del formulario (cuando se hace clic en suscribirse) */
-formNewsletter.addEventListener("submit", async function (event) {
-    /* Evita que el formulario se envie de forma tradicional (para que no recargue la pagina) */
-    event.preventDefault();
-
-    /* obtiene el valor del correo ingresado y elimina espacios al inicio o final */
-    const email = entradaNewsletter.value.trim();
-
-    /* verifica que el texto contenga un "@" para comprobar que parece un correo valido */
-    if (!email.includes("@")) {
-        /* si el correo no es valdo, muestra mesaje de error (segundo parametro = true) */
-        mostrarMensaje("Por favor, ingresa un correo válido.", true);
-        return; /* detiene el codigo aqui */
-    }
-
-    /* crea un objeto con todos los datos del formulario (email) */
-    const data = new FormData(formNewsletter);
-
-    try {
-        /* envia los datos a Formspree usando fech (sin salir del sitio) */
-        const response = await fetch(formNewsletter.action, {
-            method: formNewsletter.method, /* usa el metodo definido en el <form> (POST) */
-            body: data, /* envia los datos del formulario */
-            headers: { Accept: "application/json" }, /* pide respuestas en formato json */
-        });
-
-        /* si la respuesta del servidor fue exitosa (status 200) */
-        if (response.ok) {
-            /* muestra mensaje de exito en verde */
-            mostrarMensaje("¡Felicidades! Gracias por suscribirte 🎉");
-            entradaNewsletter.value = "";
-        } else {
-            /* si formspree responde con error (por ejemplo, formulario mal configurado) */
-            mostrarMensaje("Hubo un error al enviar. Intenta de nuevo.", true);
+        if (!nombre || !correo.includes("@") || !mensaje) {
+            mostrarMensajeContacto(
+                "Por favor completa todos los campos correctamente.",
+                true,
+                form
+            );
+            return;
         }
-    } catch (error) {
-        /* si hay un problema de conexion o el fetch falla*/
-        mostrarMensaje("Error de conexión. Revisa tu internet.", true);
+
+        boton.disabled = true;
+        const textoOriginal = boton.innerHTML;
+        boton.innerHTML = `<span class="spinner"></span> Enviando...`;
+
+        const data = new FormData(form);
+
+        try {
+            const response = await fetch(form.action, {
+                method: form.method,
+                body: data,
+                headers: { Accept: "application/json" },
+            });
+
+            if (response.ok) {
+                mostrarMensajeContacto(
+                    "✅ ¡Gracias por contactarnos! Te responderemos pronto."
+                );
+                form.reset();
+            } else {
+                const errorData = await response.json();
+                console.error("Error Formspree:", errorData);
+                mostrarMensajeContacto(
+                    "❌ Error al enviar: intenta nuevamente.",
+                    true,
+                    form
+                );
+            }
+        } catch (error) {
+            console.error("Contacto fetch error:", error);
+            mostrarMensajeContacto(
+                "⚠️ Error de conexión. Revisa tu internet.",
+                true,
+                form
+            );
+        } finally {
+            boton.disabled = false;
+            boton.innerHTML = textoOriginal;
+        }
+    });
+})();
+
+/*  -------------------------
+        NEWSLETTER (form_newsletter)
+    ------------------------- */
+(function initNewsletter() {
+    const form = document.getElementById("form_newsletter");
+    if (!form) return;
+
+    const entradaNewsletter = document.getElementById("entrada_newsletter");
+    const mensajeNewsletter = document.getElementById("mensaje_newsletter");
+
+    form.addEventListener("submit", async function (event) {
+        event.preventDefault();
+        const email = entradaNewsletter.value.trim();
+        if (!email.includes("@")) {
+            mostrarMensaje("Por favor, ingresa un correo válido.", true);
+            return;
+        }
+
+        const data = new FormData(form);
+
+        try {
+            const response = await fetch(form.action, {
+                method: form.method,
+                body: data,
+                headers: { Accept: "application/json" },
+            });
+
+            if (response.ok) {
+                mostrarMensaje("¡Felicidades! Gracias por suscribirte 🎉");
+                entradaNewsletter.value = "";
+            } else {
+                mostrarMensaje(
+                    "Hubo un error al enviar. Intenta de nuevo.",
+                    true
+                );
+            }
+        } catch (error) {
+            mostrarMensaje("Error de conexión. Revisa tu internet.", true);
+        }
+    });
+
+    function mostrarMensaje(texto, esError = false) {
+        if (!mensajeNewsletter) return;
+        mensajeNewsletter.textContent = texto;
+        mensajeNewsletter.style.color = esError
+            ? "#ff6b6b"
+            : "var(--color-acento)";
+        mensajeNewsletter.style.opacity = "1";
+        setTimeout(() => {
+            mensajeNewsletter.style.opacity = "0";
+        }, 4000);
     }
-});
+})();
 
-/* funcion que muestra un mensaje en pantalla (verde o rojo) */
-function mostrarMensaje(texto, esError = false) {
-    /* cambia el texto dentro del parrafo donde se muestra mensaje */
-    mensajeNewsletter.textContent = texto;
-    /* si es error, el color sera rojo, si no sera verde */
-    mensajeNewsletter.style.color = esError ? "#ff6b6b" : "var(--color-acento)";
-    /* hace visible el mensaje (opacity = 1) */
-    mensajeNewsletter.style.opacity = "1";
+/*  -------------------------
+        LOADER (ocultar si existe)
+    ------------------------- */
+(function hideLoaderIfExists() {
+    const loader = document.getElementById("loader");
+    if (loader) loader.style.display = "none";
+})();
 
-    // Desaparece suavemente después de 4 segundos, el mensaje lo hace lentamente
-    setTimeout(() => {
-        mensajeNewsletter.style.opacity = "0";
-    }, 4000);
+/*  -------------------------
+        SISTEMA GLOBAL DE CARRITO
+    - Estas funciones son simples y globales para que otros scripts las usen
+    ------------------------- */
+function obtenerCarrito() {
+    return JSON.parse(localStorage.getItem("carritoBizitzal")) || [];
 }
 
-/* ----------------- FIN NEWSLETTER  ---------------------- */
+function guardarCarrito(carrito) {
+    localStorage.setItem("carritoBizitzal", JSON.stringify(carrito));
+}
+
+function agregarAlCarrito(id, cantidad = 1) {
+    let carrito = obtenerCarrito();
+    const existente = carrito.find((p) => p.id === id);
+    if (existente) {
+        existente.cantidad = (existente.cantidad || 0) + cantidad;
+    } else {
+        carrito.push({ id, cantidad });
+    }
+    guardarCarrito(carrito);
+    actualizarContadorCarrito();
+}
+
+// Actualiza el contador visual (el badge del header)
+function actualizarContadorCarrito() {
+    const carrito = obtenerCarrito();
+    const total = carrito.reduce((acc, p) => acc + (p.cantidad || 0), 0);
+    const contador = document.getElementById("contador_carrito");
+    if (contador) contador.textContent = total;
+}
+
+
+/* ----------------------------------------------
+    addToCartFromBtn(elemento)
+    - Se usa en las tarjetas del index.html
+    - Obtiene el ID desde el <article class="tarjeta">
+    - Llama a agregarAlCarrito()
+---------------------------------------------- */
+function addToCartFromBtn(btn) {
+    try {
+        // Encontrar tarjeta padre
+        const card = btn.closest("article");
+        if (!card) {
+            console.warn("No se encontró la tarjeta del producto.");
+            return;
+        }
+
+        // ID del producto
+        const id = card.dataset.id;
+        if (!id) {
+            console.warn("La tarjeta no tiene data-id.");
+            return;
+        }
+
+        // Agregar al carrito
+        agregarAlCarrito(id, 1);
+
+        // Mostrar mensaje temporal
+        showMiniToast("Producto agregado al carrito 🛒✨");
+
+    } catch (err) {
+        console.error("addToCartFromBtn error:", err);
+    }
+}
+
+/* ----------------------------------------------
+    Pequeño toast visual (fallback simple)
+---------------------------------------------- */
+function showMiniToast(texto) {
+    const msg = document.createElement("div");
+    msg.textContent = texto;
+    msg.style.position = "fixed";
+    msg.style.bottom = "20px";
+    msg.style.right = "20px";
+    msg.style.background = "var(--color-acento)";
+    msg.style.color = "#042204";
+    msg.style.padding = "10px 14px";
+    msg.style.borderRadius = "10px";
+    msg.style.boxShadow = "0 4px 12px rgba(0,0,0,0.25)";
+    msg.style.zIndex = "9999";
+    msg.style.opacity = "0";
+    msg.style.transition = "opacity .3s";
+
+    document.body.appendChild(msg);
+
+    setTimeout(() => msg.style.opacity = "1", 30);
+    setTimeout(() => {
+        msg.style.opacity = "0";
+        setTimeout(() => msg.remove(), 300);
+    }, 1800);
+}
+
+// Exponer globalmente
+window.addToCartFromBtn = addToCartFromBtn;
+
+
+
+
+
+
+
+
+// Exponer funciones globales que podrían usarse inline
+window.agregarAlCarrito = agregarAlCarrito;
+
+// Inicializar contador en carga
+document.addEventListener("DOMContentLoaded", actualizarContadorCarrito);

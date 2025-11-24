@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Bizitzal | Carrito</title>
+
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+
+<body class="fade-in">
+
+<header>
+    <div class="container nav">
+        <div class="marca">
+            <img src="../asset/img/Logo-negro-copia.jpg" alt="Logo Bizitzal" />
+            <div>
+                <h1>Bizitzal</h1>
+                <div class="palabras">Kits Creativos & DIY</div>
+            </div>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="../index.html#kits">Kits</a></li>
+                <li><a href="../index.html#reviews">Reseñas</a></li>
+                <li><a href="../index.html#about">Nosotros</a></li>
+                <li><a href="../index.html#contact">Contacto</a></li>
+            </ul>
+        </nav>
+
+        <div class="carrito">
+            <svg width="26" height="26">
+                <circle cx="13" cy="13" r="10" stroke="white" fill="none"></circle>
+            </svg>
+            <div class="contador" id="contador_carrito">0</div>
+        </div>
+    </div>
+</header>
+
+<main class="main container mt-5 pt-3">
+    <h1 class="text-center mb-4" style="color: var(--color-acento); font-weight: 800;">Tu Carrito</h1>
+
+    <!-- Contenedor dinámico -->
+    <div id="carrito_contenido"></div>
+
+    <!-- Total -->
+    <div class="text-end mt-4">
+        <h3>Total: <span id="carrito_total">0</span> ARS</h3>
+        <button class="btn_primario mt-3" id="btn_checkout">
+            Finalizar compra
+        </button>
+    </div>
+</main>
+
+<footer class="pie_pagina mt-5">
+    <div class="container grid_pie_pagina">
+        <div class="columna_pie_pagina columna_marca">
+            <div class="marca">
+                <img src="../asset/img/Logo-negro-copia.jpg" alt="Logo Bizitzal" />
+                <div>
+                    <h3>Bizitzal</h3>
+                    <p class="lema">Inspira tu creatividad.</p>
+                </div>
+            </div>
+        </div>
+        <div class="derechos_autor mt-4 text-center">
+            <p>&copy; 2025 Bizitzal Kits. Todos los derechos reservados.</p>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Enlaces con mis js -->
+<script src="../js/script.js"></script>
+<script src="../js/carrito.js"></script>
+
+</body>
+</html>

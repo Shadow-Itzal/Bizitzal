@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Bizitzal | Kits Creativos y DIY</title>
+
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;700&family=Poppins:wght@600;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Mis estilos -->
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+
+<body class="fade-in">
+
+    <div id="loader" class="loader-overlay">
+        <div class="spinner"></div>
+    </div>
+
+
+
+    <header>
+        <div class="container nav">
+
+            <div class="marca">
+                <img src="../asset/img/Logo-negro-copia.jpg" alt="Logo Bizitzal" />
+                <div>
+                    <h1>Bizitzal</h1>
+                    <div class="palabras">
+                        Kits Creativos & DIY
+                    </div>
+                </div>
+            </div>
+
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Inicio</a></li>
+                    <li><a href="../index.html#kits">Kits</a></li>
+                    <li><a href="../index.html#reviews">Reseñas</a></li>
+                    <li><a href="../index.html#about">Nosotros</a></li>
+                    <li><a href="../index.html#contact">Contacto</a></li>
+                </ul>
+            </nav>
+
+            <div class="carrito" id="boton_carrito">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M6 6h15l-1.5 9h-12L4 2H2" stroke="white" stroke-width="1.2" stroke-linecap="round"
+                        stroke-linejoin="round" opacity="0.9" />
+                </svg>
+                <div class="contador" id="contador_carrito">0</div>
+            </div>
+
+        </div>
+    </header>
+
+    <main class="main">
+
+        <!-- TÍTULO DEL PRODUCTO (DINÁMICO) -->
+        <div class="container mt-5 pt-3 mb-4">
+            <h1 id="titulo_producto" class="text-center mb-5"
+                style="color: var(--color-acento); font-size: 3rem; font-weight: 800;">
+                Cargando...
+            </h1>
+        </div>
+
+        <!-- CARRUSEL DINÁMICO -->
+        <section class="container mb-5">
+            <div id="carrusel_producto" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                <div class="carousel-indicators" id="indicadores_carrusel"></div>
+
+                <div class="carousel-inner rounded shadow-lg" id="imagenes_carrusel" style="max-height: 600px;">
+
+                    <div class="carousel-item active">
+                        <img src="https://picsum.photos/800?random=99" class="d-block w-100"
+                            style="object-fit: cover; max-height: 350px;">
+                    </div>
+                </div>
+
+                <button class="carousel-control-prev" type="button" data-bs-target="#carrusel_producto"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                    <span class="visually-hidden">Anterior</span>
+                </button>
+
+                <button class="carousel-control-next" type="button" data-bs-target="#carrusel_producto"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                    <span class="visually-hidden">Siguiente</span>
+                </button>
+            </div>
+        </section>
+
+        <section class="container pb-5">
+            <div class="row gx-5">
+
+                <!-- Próximos Productos -->
+                <div class="col-lg-3 d-none d-lg-block text-center">
+                    <h4 class="fw-bold mb-4">Próximos Productos</h4>
+                    <div id="proximos_contenedor"></div>
+                </div>
+
+                <!-- Texto central -->
+                <div class="col-lg-6 col-12 text-center">
+
+                    <h2 class="fw-bold mb-3">Descripción</h2>
+
+                    <p id="descripcion_producto" class="lead"
+                        style="color: var(--color-mutado); line-height: 1.6; max-width: 600px; margin: 0 auto 1.5rem auto;">
+                        Cargando descripción...
+                    </p>
+
+                    <h3 id="precio_producto" class="fw-bold mt-4"
+                        style="color: var(--color-acento); font-size: 2.2rem;">
+                        -
+                    </h3>
+
+                    <div class="d-flex align-items-center justify-content-center my-4">
+                        <input id="cantidad_producto" class="form-control text-center me-3" type="number" value="1"
+                            min="1"
+                            style="max-width: 6rem; background-color: var(--color-tarjeta); color: var(--color-texto);">
+                        <button class="btn_primario" style="height: 50px;">
+                            AÑADIR AL CARRITO
+                        </button>
+                    </div>
+
+                    <h4 class="fw-bold mt-5 mb-3">Contenido del Kit:</h4>
+                    <ul id="lista_contenido" class="list-unstyled text-start mx-auto" style="max-width: 400px;"></ul>
+
+                </div>
+
+                <!-- Relacionados -->
+                <div class="col-lg-3 d-none d-lg-block text-center">
+                    <h4 class="fw-bold mb-4">Kits Relacionados</h4>
+                    <div id="relacionados_contenedor"></div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <div id="toast_carrito" class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div class="toast text-white bg-success" role="alert">
+        <div class="toast-body">
+            ¡Producto agregado al carrito! 🧺✨
+        </div>
+    </div>
+</div>
+
+
+    <footer class="pie_pagina" id="pie_pagina" >
+        <div class="container grid_pie_pagina">
+
+            <div class="columna_pie_pagina columna_marca">
+                <div class="marca">
+                    <img src="../asset/img/Logo-negro-copia.jpg" alt="Logo Bizitzal" />
+                    <div>
+                        <h3>Bizitzal</h3>
+                        <p class="lema">Inspira tu creatividad.</p>
+                    </div>
+                </div>
+                <div class="enlaces_sociales">
+                    <a href="#" aria-label="Instagram">
+                        <!-- SVG Instagram -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                        </svg>
+                    </a>
+                    <a href="#" aria-label="Facebook">
+                        <!-- SVG Facebook -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                        </svg>
+                    </a>
+                    <a href="#" aria-label="Pinterest">
+                        <!-- SVG Pinterest -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12.016 2.016c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8zM15 15l-3-3v-5h3v5l-3 3z"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+
+            <div class="columna_pie_pagina informacion_legal">
+                <h4>Información Legal</h4>
+                <ul>
+                    <li><a href="#">Términos y Condiciones</a></li>
+                    <li><a href="#">Política de Privacidad</a></li>
+                    <li><a href="#">Política de Envíos</a></li>
+                    <li><a href="#">Devoluciones</a></li>
+                </ul>
+            </div>
+
+
+            <div class="columna_pie_pagina columna_newsletter">
+                <h4 style="text-align: center;">Newsletter</h4>
+                <p>Suscríbete para recibir ofertas y tips creativos.</p>
+                <form id="form_newsletter" action="https://formspree.io/f/mrbyonpr" method="POST">
+                    <div class="formulario_newsletter">
+                        <input 
+                            type="email" 
+                            id="entrada_newsletter" 
+                            name="email" required placeholder="Escribe tu correo electrónico"
+                        />
+                        <button class="btn_primario" type="submit">Suscribirse</button>
+                    </div>
+                    <p id="mensaje_newsletter" class="mensaje_newsletter"></p>
+                </form>
+            </div>
+
+        </div>
+
+        <div class="derechos_autor">
+            <p>&copy; 2025 Bizitzal Kits. Todos los derechos reservados.</p>
+            <p>Diseño y concepto creativo: <i>Marta Mariana Dominguez</i>.</p>
+        </div>
+
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Enlazar mis js -->
+    <script src="../js/script.js"></script>
+    <script src="../js/descripcion_producto.js"></script>
+
+</body>
+
+</html>

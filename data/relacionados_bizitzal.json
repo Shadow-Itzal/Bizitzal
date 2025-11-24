@@ -1,0 +1,124 @@
+{
+    "productos": [
+        {
+            "producto_principal_id": "HOBBY-001",
+            "sugerencias": [
+                {
+                    "id": "HOBBY-002",
+                    "nombre": "Amigurumi: Mini Panda",
+                    "imagen_url": "https://picsum.photos/800/600?random=87"
+                },
+                {
+                    "id": "HOBBY-003",
+                    "nombre": "Joyería en Resina",
+                    "imagen_url": "https://picsum.photos/800/600?random=88"
+                }
+            ]
+        },
+        {
+            "producto_principal_id": "HOBBY-002",
+            "sugerencias": [
+                {
+                    "id": "HOBBY-001",
+                    "nombre": "Tejido: Gorro y Bufanda",
+                    "imagen_url": "../pages/ ../asset/img/tejido.jpg"
+                },
+                {
+                    "id": "HOBBY-004",
+                    "nombre": "Lettering Creativo",
+                    "imagen_url": "../pages ../asset/img/lettering-2.jpg"
+                }
+            ]
+        },
+        {
+            "producto_principal_id": "HOBBY-003",
+            "sugerencias": [
+                {
+                    "id": "HOBBY-006",
+                    "nombre": "Velas Aromáticas",
+                    "imagen_url": "../pages/ ../asset/img/vela-aromatica.avif"
+                },
+                {
+                    "id": "HOBBY-007",
+                    "nombre": "Pintura en Lienzo: Atardecer",
+                    "imagen_url": "../pages ../asset/img/pintura-lienzo-atardecer.jpg"
+                }
+            ]
+        },
+        {
+            "producto_principal_id": "HOBBY-004",
+            "sugerencias": [
+                {
+                    "id": "HOBBY-005",
+                    "nombre": "Velas Decorativas",
+                    "imagen_url": "../pages ../asset/img/vela-decorativa-2.jpg"
+                },
+                {
+                    "id": "HOBBY-008",
+                    "nombre": "Origami Japonés",
+                    "imagen_url": "../pages/ ../asset/img/origami-japones.jpg"
+                }
+            ]
+        },
+        {
+            "producto_principal_id": "HOBBY-005",
+            "sugerencias": [
+                {
+                    "id": "HOBBY-003",
+                    "nombre": "Joyería en Resina",
+                    "imagen_url": "../pages/ ../asset/img/joyeria-resina-2.avif"
+                },
+                {
+                    "id": "HOBBY-006",
+                    "nombre": "Velas Aromáticas",
+                    "imagen_url": "../pages/ ../asset/img/vela-aromatica.avif"
+                }
+            ]
+        },
+        {
+            "producto_principal_id": "HOBBY-006",
+            "sugerencias": [
+                {
+                    "id": "HOBBY-005",
+                    "nombre": "Velas Decorativas",
+                    "imagen_url": "../pages ../asset/img/vela-decorativa-2.jpg"
+                },
+                {
+                    "id": "HOBBY-001",
+                    "nombre": "Tejido: Gorro y Bufanda",
+                    "imagen_url": "../pages/ ../asset/img/tejido.jpg"
+                }
+            ]
+        },
+        {
+            "producto_principal_id": "HOBBY-007",
+            "sugerencias": [
+                {
+                    "id": "HOBBY-004",
+                    "nombre": "Lettering Creativo",
+                    "imagen_url": "../pages/ ../asset/img/lettering-2.jpg"
+                },
+                {
+                    "id": "HOBBY-008",
+                    "nombre": "Origami Japonés",
+                    "imagen_url": "../pages/ ../asset/img/origami-japones.jpg"
+                }
+            ]
+        },
+        {
+            "producto_principal_id": "HOBBY-008",
+            "sugerencias": [
+                {
+                    "id": "HOBBY-007",
+                    "nombre": "Pintura en Lienzo: Atardecer",
+                    "imagen_url": "../pages ../asset/img/pintura-lienzo-atardecer.jpg"
+                },
+                {
+                    "id": "HOBBY-002",
+                    "nombre": "Amigurumi: Mini Panda",
+                    "imagen_url": "../pages/ ../asset/img/amigurumi.jpg"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,172 @@
+[
+    {
+        "id": "HOBBY-001",
+        "nombre": "Tejido: Gorro y Bufanda",
+        "categoria": "Tejido",
+        "nivel": "Principiante",
+        "precio": 35.00,
+        "stock_inicial": 55,
+        "descripcion_breve": "Aprende a tejer un gorro y una bufanda calentitos con este kit ideal para principiantes.",
+        "descripcion_detallada": "Este kit te guía paso a paso para crear un conjunto de gorro y bufanda utilizando técnicas básicas de tejido. Perfecto para quienes quieren iniciarse en un hobby relajante y creativo. Incluye materiales de excelente calidad.",
+        "imagenes_banner": [
+            "../pages/../asset/img/tejido.jpg",
+            "https://picsum.photos/800/600?random=1",
+            "https://picsum.photos/800/600?random=2"
+        ],
+        "incluye": [
+            "Lanas gruesas",
+            "Agujas de tejer",
+            "Patrón ilustrado",
+            "Bolsa de tela"
+        ]
+    },
+    {
+        "id": "HOBBY-002",
+        "nombre": "Amigurumi: Mini Panda",
+        "categoria": "Tejido",
+        "nivel": "Intermedio",
+        "precio": 28.00,
+        "stock_inicial": 40,
+        "descripcion_breve": "Crea un tierno amigurumi de panda con instrucciones paso a paso.",
+        "descripcion_detallada": "Este kit contiene todo lo necesario para tejer un adorable mini panda al estilo amigurumi. Aprenderás técnicas de tejido en espiral y cambios de color para lograr un resultado profesional.",
+        "imagenes_banner": [
+            "../pages/ ../asset/img/amigurumi.jpg",
+            "https://picsum.photos/800/600?random=3",
+            "https://picsum.photos/800/600?random=4"
+        ],
+        "incluye": [
+            "Hilos de algodón",
+            "Aguja crochet",
+            "Relleno soft",
+            "Patrón ilustrado",
+            "Ojos de seguridad"
+        ]
+    },
+    {
+        "id": "HOBBY-003",
+        "nombre": "Joyería en Resina",
+        "categoria": "Resina",
+        "nivel": "Avanzado",
+        "precio": 45.00,
+        "stock_inicial": 62,
+        "descripcion_breve": "Diseña piezas únicas de joyería con resina epoxi y moldes incluidos.",
+        "descripcion_detallada": "Con este kit podrás crear colgantes y aros personalizados utilizando resina epoxi. Incluye moldes variados, pigmentos y accesorios metálicos para un acabado profesional.",
+        "imagenes_banner": [
+            "../pages/ ../asset/img/joyeria-resina-2.avif",
+            "https://picsum.photos/800/600?random=5",
+            "https://picsum.photos/800/600?random=6"
+        ],
+        "incluye": [
+            "Resina epoxi",
+            "Pigmentos perlados",
+            "Moldes de silicona",
+            "Cadenas y ganchos"
+        ]
+    },
+    {
+        "id": "HOBBY-004",
+        "nombre": "Lettering Creativo",
+        "categoria": "Lettering",
+        "nivel": "Principiante",
+        "precio": 22.00,
+        "stock_inicial": 70,
+        "descripcion_breve": "Aprende lettering con trazos suaves y técnicas iniciales.",
+        "descripcion_detallada": "Este kit es ideal para iniciarte en el mundo del lettering. Incluye marcadores brush, guías para practicar y papel especial para que tus trazos fluyan con facilidad.",
+        "imagenes_banner": [
+            "./asset/img/lettering-2.jpg",
+            "https://picsum.photos/800/600?random=7",
+            "https://picsum.photos/800/600?random=8"
+        ],
+        "incluye": [
+            "Marcadores brush",
+            "Cuaderno de práctica",
+            "Guía de trazos",
+            "Plantillas decorativas"
+        ]
+    },
+    {
+        "id": "HOBBY-005",
+        "nombre": "Velas Decorativas",
+        "categoria": "Velas",
+        "nivel": "Intermedio",
+        "precio": 30.00,
+        "stock_inicial": 48,
+        "descripcion_breve": "Crea velas decorativas con formas y colores personalizados.",
+        "descripcion_detallada": "Aprende a diseñar velas decorativas utilizando moldes especiales, colorantes y fragancias suaves. Un kit perfecto para decorar tu hogar o regalar.",
+        "imagenes_banner": [
+            "./asset/img/velas-deco.jpg",
+            "./asset/img/velas-deco-2.jpg",
+            "./asset/img/velas-deco-3.jpg"
+        ],
+        "incluye": [
+            "Parafina premium",
+            "Moldes variados",
+            "Colorantes",
+            "Esencias naturales",
+            "Mechas reforzadas"
+        ]
+    },
+    {
+        "id": "HOBBY-006",
+        "nombre": "Velas Aromáticas",
+        "categoria": "Velas",
+        "nivel": "Principiante",
+        "precio": 18.00,
+        "stock_inicial": 52,
+        "descripcion_breve": "Haz tus propias velas aromáticas con esencias naturales.",
+        "descripcion_detallada": "Este kit te enseña a crear velas aromáticas utilizando mezclas de esencias naturales y recipientes personalizados. Ideal para quienes buscan un hobby relajante.",
+        "imagenes_banner": [
+            "./asset/img/velas-aromaticas.jpg",
+            "./asset/img/velas-aromaticas-2.jpg",
+            "./asset/img/velas-aromaticas-3.jpg"
+        ],
+        "incluye": [
+            "Cera de soja",
+            "Esencias naturales",
+            "Recipientes decorativos",
+            "Mechas ecológicas"
+        ]
+    },
+    {
+        "id": "HOBBY-007",
+        "nombre": "Pintura en Lienzo: Atardecer",
+        "categoria": "Pintura",
+        "nivel": "Intermedio",
+        "precio": 40.00,
+        "stock_inicial": 37,
+        "descripcion_breve": "Pinta un hermoso atardecer siguiendo una guía paso a paso.",
+        "descripcion_detallada": "Incluye un lienzo pre-dibujado, pinceles y pinturas acrílicas para crear una obra vibrante llena de color. Perfecto para relajarte mientras desarrollas tu lado artístico.",
+        "imagenes_banner": [
+            "./asset/img/pintura-atardecer.jpg",
+            "./asset/img/pintura-atardecer-2.jpg",
+            "./asset/img/pintura-atardecer-3.jpg"
+        ],
+        "incluye": [
+            "Lienzo",
+            "Pinturas acrílicas",
+            "Pinceles",
+            "Guía paso a paso"
+        ]
+    },
+    {
+        "id": "HOBBY-008",
+        "nombre": "Origami Japonés",
+        "categoria": "Origami",
+        "nivel": "Principiante",
+        "precio": 15.00,
+        "stock_inicial": 64,
+        "descripcion_breve": "Aprende figuras clásicas de origami con papeles japoneses.",
+        "descripcion_detallada": "Este kit contiene papeles japoneses de alta calidad y una guía ilustrada con figuras tradicionales y modernas. Ideal para desarrollar precisión y creatividad.",
+        "imagenes_banner": [
+            "./asset/img/origami.jpg",
+            "./asset/img/origami-2.jpg",
+            "./asset/img/origami-3.jpg"
+        ],
+        "incluye": [
+            "Papel japonés",
+            "Guía ilustrada",
+            "Plantillas",
+            "Bolsa organizadora"
+        ]
+    }
+]

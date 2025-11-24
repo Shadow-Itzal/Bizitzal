@@ -1,0 +1,26 @@
+[
+    {
+        "id": "PROX-001",
+        "nombre": "Kit de Macramé Decorativo",
+        "imagen_url": "https://picsum.photos/800/600?random=44",
+        "fecha_lanzamiento": "10-02-2026"
+    },
+    {
+        "id": "PROX-002",
+        "nombre": "Kit de Bordado Floral",
+        "imagen_url": "https://picsum.photos/800/600?random=46",
+        "fecha_lanzamiento": "05-03-2026"
+    },
+    {
+        "id": "PROX-003",
+        "nombre": "Kit de Cerámica para Principiantes",
+        "imagen_url": "https://picsum.photos/800/600?random=48",
+        "fecha_lanzamiento": "01-04-2026"
+    },
+    {
+        "id": "PROX-004",
+        "nombre": "Kit de Scrapbooking Creativo",
+        "imagen_url": "https://picsum.photos/800/600?random=50",
+        "fecha_lanzamiento": "20-05-2026"
+    }
+]

@@ -48,6 +48,47 @@ body {
     height: 100%; 
 }
 
+/* ANIMACIÓN SUAVE ENTRE PÁGINAS en el body */
+.fade-in {
+    opacity: 0;
+    animation: fadeInPage 0.6s ease forwards;
+}
+
+@keyframes fadeInPage {
+    to {
+        opacity: 1;
+    }
+}
+
+
+/* LOADER GENERAL */
+.loader-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3000;
+}
+
+.spinner {
+    width: 60px;
+    height: 60px;
+    border: 6px solid #ccc;
+    border-top-color: var(--color-acento);
+    border-radius: 50%;
+    animation: spinLoader 0.9s linear infinite;
+}
+
+@keyframes spinLoader {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+
 /* --- Contenedor centrado y ancho al maximo --- */
 .container {
     width: calc(100% - 40px);
@@ -825,4 +866,16 @@ textarea::placeholder {
 .main {
     padding-top: var(--alto-header); 
     /* Si tu header es 72px, el contenido empieza en 72px */
+}
+
+
+/* seccion carrito */
+
+.card img {
+    object-fit: cover;
+    height: 100px;
+}
+
+.btn-outline-secondary {
+    padding: 2px 8px;
 }
