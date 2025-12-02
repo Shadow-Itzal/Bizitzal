@@ -111,7 +111,7 @@ function mostrarMensajeContacto(texto, esError = false, origen = null) {
 
 /*  -------------------------
         FORMULARIO DE CONTACTO (index & página de producto)
-    - Usa Formspree (tu action); valida y muestra feedback
+    - Usa Formspree (en action); valida y muestra feedback
     ------------------------- */
 (function initContactoForm() {
     const form = document.getElementById("formulario_contacto");
@@ -133,7 +133,7 @@ function mostrarMensajeContacto(texto, esError = false, origen = null) {
     form.addEventListener("submit", async function (event) {
         event.preventDefault();
 
-        const nombre = nombreContacto.value.trim();
+        const nombre = nombreContacto.value.trim(); // siempre va a estar
         const correo = correoContacto.value.trim();
         const mensaje = mensajeContacto.value.trim();
         const boton = form.querySelector('button[type="submit"]');
@@ -220,12 +220,12 @@ function mostrarMensajeContacto(texto, esError = false, origen = null) {
                 entradaNewsletter.value = "";
             } else {
                 mostrarMensaje(
-                    "Hubo un error al enviar. Intenta de nuevo.",
+                    "❌ Hubo un error al enviar. Intenta de nuevo.",
                     true
                 );
             }
         } catch (error) {
-            mostrarMensaje("Error de conexión. Revisa tu internet.", true);
+            mostrarMensaje("⚠️ Error de conexión. Revisa tu internet.", true);
         }
     });
 
@@ -349,12 +349,40 @@ window.addToCartFromBtn = addToCartFromBtn;
 
 
 
-
-
-
-
 // Exponer funciones globales que podrían usarse inline
 window.agregarAlCarrito = agregarAlCarrito;
 
 // Inicializar contador en carga
 document.addEventListener("DOMContentLoaded", actualizarContadorCarrito);
+
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    // Buscar el botón del carrito
+    const botonCarrito = document.getElementById("boton_carrito");
+
+    if (botonCarrito) {
+        botonCarrito.addEventListener("click", () => {
+            // Detectar si estamos dentro de la carpeta /pages/
+            const estoyEnPages = window.location.pathname.includes("/pages/");
+            
+            // Si estamos en pages, el carrito está al lado ("./carrito.html")
+            // Si estamos en inicio, hay que entrar a pages ("./pages/carrito.html")
+            const rutaCarrito = estoyEnPages ? "./carrito.html" : "./pages/carrito.html";
+
+            // Navegar
+            window.location.href = rutaCarrito;
+        });
+    }
+    
+    // Asegurarnos de actualizar el número al cargar la página
+    if (typeof actualizarContadorCarrito === 'function') {
+        actualizarContadorCarrito();
+    }
+});
+
+
+

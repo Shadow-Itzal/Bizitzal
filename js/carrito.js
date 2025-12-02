@@ -1,14 +1,14 @@
 /*  =========================================================================
-        carrito.js  —  Sistema del carrito (solo para carrito.html)
-    ==========================================================================
+//        carrito.js  —  Sistema del carrito (solo para carrito.html)
+//    ==========================================================================
 
-    Responsabilidades:
-        - Cargar carrito desde localStorage
-        - Mostrar productos (con datos desde kits_bizitzal.json)
-        - Aumentar / disminuir cantidades
-        - Eliminar producto
-        - Calcular total y actualizar contador global (usa actualizarContadorCarrito del script global)
-    ------------------------------------------------------------------------- */
+//    Responsabilidades:
+//        - Cargar carrito desde localStorage
+//        - Mostrar productos (con datos desde kits_bizitzal.json)
+//        - Aumentar / disminuir cantidades
+//        - Eliminar producto
+//        - Calcular total y actualizar contador global (usa actualizarContadorCarrito del script global)
+//    ------------------------------------------------------------------------- */
 
 (function () {
     // Determina la ruta correcta a data (carrito.html está en /pages/, por lo general)
@@ -61,6 +61,16 @@
             // Si no existe producto en JSON (data inconsistente), lo omitimos
             if (!producto) return;
 
+            // --- INICIO CORRECCIÓN DE IMAGEN ---
+            let rutaImagen = producto.imagenes_banner[0] || "../asset/img/placeholder.jpg";
+            
+            // Si la ruta viene del JSON como "./asset/...", le quitamos el punto 
+            // y le agregamos "../" para salir de la carpeta pages.
+            if (rutaImagen.startsWith("./")) {
+                rutaImagen = "." + rutaImagen; // Convierte ./asset en ../asset
+            }
+            // --- FIN CORRECCIÓN ---
+
             const subtotal = producto.precio * item.cantidad;
             totalGeneral += subtotal;
 
@@ -70,26 +80,26 @@
             card.innerHTML = `
                 <div class="row g-3 align-items-center">
                     <div class="col-md-2">
-                    <img src="${producto.imagenes_banner[0] || "./asset/img/placeholder.jpg"}" class="img-fluid rounded">
-                </div>
-                <div class="col-md-4">
-                    <h5>${producto.nombre}</h5>
-                    <p class="text-muted">${producto.categoria} - ${producto.nivel}</p>
-                </div>
-                <div class="col-md-3">
-                    <div class="d-flex align-items-center">
-                        <button class="btn btn-sm btn-outline-secondary" data-action="dec" data-id="${item.id}">-</button>
-                        <span class="mx-3">${item.cantidad}</span>
-                        <button class="btn btn-sm btn-outline-secondary" data-action="inc" data-id="${item.id}">+</button>
+                        <img src="${rutaImagen}" class="img-fluid rounded" style="max-height: 80px; object-fit: cover;">
+                    </div>
+                    <div class="col-md-4">
+                        <h5 class="mb-1">${producto.nombre}</h5>
+                        <p class="text-muted small mb-0">${producto.categoria} - ${producto.nivel}</p>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="d-flex align-items-center">
+                            <button class="btn btn-sm btn-outline-secondary" data-action="dec" data-id="${item.id}">-</button>
+                            <span class="mx-3 fw-bold">${item.cantidad}</span>
+                            <button class="btn btn-sm btn-outline-secondary" data-action="inc" data-id="${item.id}">+</button>
+                        </div>
+                    </div>
+                    <div class="col-md-2 text-end">
+                        <strong>$${subtotal}</strong>
+                    </div>
+                    <div class="col-md-1 text-end">
+                        <button class="btn btn-danger btn-sm" data-action="remove" data-id="${item.id}">X</button>
                     </div>
                 </div>
-                <div class="col-md-2 text-end">
-                    <strong>$${subtotal}</strong>
-                </div>
-                <div class="col-md-1 text-end">
-                    <button class="btn btn-danger btn-sm" data-action="remove" data-id="${item.id}">X</button>
-                </div>
-            </div>
             `;
             contenedor.appendChild(card);
         });
@@ -138,7 +148,7 @@
     // Checkout simulado
     function checkoutSimulado() {
         alert("¡Gracias por tu compra! 🧡 (Simulación)");
-        // Vaciar carrito (opcional)
+        // Vaciar carrito 
         guardarCarritoLocal([]);
         mostrarCarrito();
     }

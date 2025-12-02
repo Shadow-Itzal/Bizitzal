@@ -9,7 +9,7 @@
         "descripcion_breve": "Aprende a tejer un gorro y una bufanda calentitos con este kit ideal para principiantes.",
         "descripcion_detallada": "Este kit te guía paso a paso para crear un conjunto de gorro y bufanda utilizando técnicas básicas de tejido. Perfecto para quienes quieren iniciarse en un hobby relajante y creativo. Incluye materiales de excelente calidad.",
         "imagenes_banner": [
-            "../pages/../asset/img/tejido.jpg",
+            "./asset/img/tejido.jpg",
             "https://picsum.photos/800/600?random=1",
             "https://picsum.photos/800/600?random=2"
         ],
@@ -30,7 +30,7 @@
         "descripcion_breve": "Crea un tierno amigurumi de panda con instrucciones paso a paso.",
         "descripcion_detallada": "Este kit contiene todo lo necesario para tejer un adorable mini panda al estilo amigurumi. Aprenderás técnicas de tejido en espiral y cambios de color para lograr un resultado profesional.",
         "imagenes_banner": [
-            "../pages/ ../asset/img/amigurumi.jpg",
+            "./asset/img/amigurumi.jpg",
             "https://picsum.photos/800/600?random=3",
             "https://picsum.photos/800/600?random=4"
         ],
@@ -52,7 +52,7 @@
         "descripcion_breve": "Diseña piezas únicas de joyería con resina epoxi y moldes incluidos.",
         "descripcion_detallada": "Con este kit podrás crear colgantes y aros personalizados utilizando resina epoxi. Incluye moldes variados, pigmentos y accesorios metálicos para un acabado profesional.",
         "imagenes_banner": [
-            "../pages/ ../asset/img/joyeria-resina-2.avif",
+            "./asset/img/joyeria-resina-2.avif",
             "https://picsum.photos/800/600?random=5",
             "https://picsum.photos/800/600?random=6"
         ],
@@ -94,9 +94,9 @@
         "descripcion_breve": "Crea velas decorativas con formas y colores personalizados.",
         "descripcion_detallada": "Aprende a diseñar velas decorativas utilizando moldes especiales, colorantes y fragancias suaves. Un kit perfecto para decorar tu hogar o regalar.",
         "imagenes_banner": [
-            "./asset/img/velas-deco.jpg",
-            "./asset/img/velas-deco-2.jpg",
-            "./asset/img/velas-deco-3.jpg"
+            "./asset/img/vela-decorativa-2.jpg",
+            "https://picsum.photos/800/600?random=9",
+            "https://picsum.photos/800/600?random=10"
         ],
         "incluye": [
             "Parafina premium",
@@ -116,9 +116,9 @@
         "descripcion_breve": "Haz tus propias velas aromáticas con esencias naturales.",
         "descripcion_detallada": "Este kit te enseña a crear velas aromáticas utilizando mezclas de esencias naturales y recipientes personalizados. Ideal para quienes buscan un hobby relajante.",
         "imagenes_banner": [
-            "./asset/img/velas-aromaticas.jpg",
-            "./asset/img/velas-aromaticas-2.jpg",
-            "./asset/img/velas-aromaticas-3.jpg"
+            "./asset/img/vela-aromatica.avif",
+            "https://picsum.photos/800/600?random=11",
+            "https://picsum.photos/800/600?random=12"
         ],
         "incluye": [
             "Cera de soja",
@@ -137,9 +137,9 @@
         "descripcion_breve": "Pinta un hermoso atardecer siguiendo una guía paso a paso.",
         "descripcion_detallada": "Incluye un lienzo pre-dibujado, pinceles y pinturas acrílicas para crear una obra vibrante llena de color. Perfecto para relajarte mientras desarrollas tu lado artístico.",
         "imagenes_banner": [
-            "./asset/img/pintura-atardecer.jpg",
-            "./asset/img/pintura-atardecer-2.jpg",
-            "./asset/img/pintura-atardecer-3.jpg"
+            "./asset/img/pintura-lienzo-atardecer.jpg",
+            "https://picsum.photos/800/600?random=13",
+            "https://picsum.photos/800/600?random=14"
         ],
         "incluye": [
             "Lienzo",
@@ -158,9 +158,9 @@
         "descripcion_breve": "Aprende figuras clásicas de origami con papeles japoneses.",
         "descripcion_detallada": "Este kit contiene papeles japoneses de alta calidad y una guía ilustrada con figuras tradicionales y modernas. Ideal para desarrollar precisión y creatividad.",
         "imagenes_banner": [
-            "./asset/img/origami.jpg",
-            "./asset/img/origami-2.jpg",
-            "./asset/img/origami-3.jpg"
+            "./asset/img/origami-japones.jpg",
+            "https://picsum.photos/800/600?random=15",
+            "https://picsum.photos/800/600?random=16"
         ],
         "incluye": [
             "Papel japonés",

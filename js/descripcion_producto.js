@@ -40,19 +40,15 @@
         try {
             const kits = await fetch(RUTA_KITS).then((r) => r.json());
 
-            // Buscar por ID (primero), o fallback: intentar buscar por nombre (si id es slug)
+            // Buscar por ID (primero), o fallback: intentar buscar por nombre
             let producto = kits.find((p) => p.id === productoID);
 
             if (!producto && productoID) {
                 // fallback: match por nombre o por slug parcial
                 producto = kits.find((k) => {
                     return (
-                        (k.nombre && k.nombre
-                            .toLowerCase()
-                            .includes(productoID.toLowerCase())) ||
-                        (k.id && k.id
-                            .toLowerCase()
-                            .includes(productoID.toLowerCase()))
+                        (k.nombre && k.nombre.toLowerCase().includes(productoID.toLowerCase())) ||
+                        (k.id && k.id.toLowerCase().includes(productoID.toLowerCase()))
                     );
                 });
             }
@@ -62,7 +58,7 @@
                 return;
             }
 
-            // Render básico seguro (verificamos existencia de cada elemento)
+            // Render básico seguro
             if (tituloEl) tituloEl.innerText = producto.nombre;
             if (descripcionEl)
                 descripcionEl.innerText =
@@ -83,15 +79,25 @@
                 });
             }
 
-            // Carrusel de imágenes
+            // Carrusel de imágenes (CORREGIDO)
             if (carruselEl && indicadoresEl) {
                 carruselEl.innerHTML = "";
                 indicadoresEl.innerHTML = "";
+                
                 (producto.imagenes_banner || []).forEach((url, idx) => {
+                    
+                    // --- AQUÍ ESTÁ LA CORRECCIÓN DE LA RUTA ---
+                    let rutaImagen = url;
+                    // Si la ruta empieza con "./", agregamos un punto extra para salir de /pages/
+                    if (rutaImagen.startsWith("./")) {
+                        rutaImagen = "." + rutaImagen;
+                    }
+                    // ------------------------------------------
+
                     const item = document.createElement("div");
-                    item.className =
-                        "carousel-item" + (idx === 0 ? " active" : "");
-                    item.innerHTML = `<img src="${url}" class="d-block w-100" style="object-fit: cover; max-height: 350px;">`;
+                    item.className = "carousel-item" + (idx === 0 ? " active" : "");
+                    // Usamos rutaImagen corregida
+                    item.innerHTML = `<img src="${rutaImagen}" class="d-block w-100" style="object-fit: cover; max-height: 350px;">`;
                     carruselEl.appendChild(item);
 
                     const btn = document.createElement("button");
@@ -108,33 +114,29 @@
             cargarProximos();
             cargarRelacionados(producto.id);
 
-            // Hook para el botón agregar al carrito (si existe)
+            // Hook para el botón agregar al carrito
             const botonAgregar = document.querySelector(".btn_primario");
             if (botonAgregar) {
-                botonAgregar.addEventListener("click", () => {
-                    // Cantidad (si existe input)
-                    const inputCantidad =
-                        document.getElementById("cantidad_producto");
-                    const cantidad = inputCantidad
-                        ? parseInt(inputCantidad.value || "1")
-                        : 1;
+                // Limpiamos listeners anteriores clonando el botón (truco rápido) o simplemente asignando onclick
+                // Para evitar complicaciones, usaremos onclick directo si prefieres, 
 
-                    // Usar función global agregarAlCarrito (definida en script.js)
+                botonAgregar.onclick = () => {
+                    const inputCantidad = document.getElementById("cantidad_producto");
+                    const cantidad = inputCantidad ? parseInt(inputCantidad.value || "1") : 1;
+
                     if (typeof window.agregarAlCarrito === "function") {
                         window.agregarAlCarrito(producto.id, cantidad);
                         showToast("¡Producto agregado al carrito!");
                     } else {
-                        console.warn(
-                            "agregarAlCarrito no disponible (script.js no cargado?)"
-                        );
+                        console.warn("agregarAlCarrito no disponible.");
                     }
-                });
+                };
             }
         } catch (err) {
             console.error("Error cargando producto:", err);
             if (tituloEl) tituloEl.innerText = "Error al cargar producto";
         } finally {
-            // ocultar loader si existe
+            // Ocultar loader si existe
             const loader = document.getElementById("loader");
             if (loader) loader.style.display = "none";
         }
@@ -168,45 +170,35 @@
         if (!relacionadosCont) return;
         relacionadosCont.innerHTML = "";
         try {
-            const relacionados = await fetch(RUTA_RELACIONADOS).then((r) =>
-                r.json()
-            );
+            const relacionados = await fetch(RUTA_RELACIONADOS).then((r) => r.json());
             const grupo = (relacionados.productos || []).find(
                 (p) => p.producto_principal_id === idPrincipal
             );
             if (!grupo) return;
 
             grupo.sugerencias.forEach((item) => {
+                
+                // --- CORRECCIÓN DE RUTA DE IMAGEN ---
+                // Como estamos en /pages/, necesitamos subir un nivel (../)
+                // Si la ruta viene limpia del JSON (ej: ./asset/img...), le agregamos el punto extra.
+                let rutaImagen = item.imagen_url;
+                if (rutaImagen.startsWith("./")) {
+                    rutaImagen = "." + rutaImagen; // Se convierte en ../asset/...
+                }
+                // ------------------------------------
+
                 const card = document.createElement("div");
                 card.className = "card mb-3 p-2 border-0";
                 card.style.backgroundColor = "var(--color-tarjeta)";
                 card.style.cursor = "pointer";
+                
                 card.onclick = () => {
-                    // Redirigir a la misma página con id del producto relacionado
-                    // Si estamos en /pages/ la ruta es ../descripcion_producto.html, si no ./descripcion_producto.html
-
-                    // ERROR
-                    // const prefix = window.location.pathname.includes("/pages/")
-                    //    ? "../"
-                    //    : "./";
-                    //window.location.href = `${prefix}descripcion_producto.html?id=${encodeURIComponent(
-                    //    item.id
-                    //)}`;
-
-                    // FIN ERROR
-
-                    // Como descripcion_producto.html YA ESTÁ en /pages/, siempre debemos navegar
-                    // relativo al mismo directorio (./) para recargar la página con otro ID.
+                    // Navegación relativa simple
                     window.location.href = `./descripcion_producto.html?id=${encodeURIComponent(item.id)}`;
-
-
-
-
-
-
                 };
+
                 card.innerHTML = `
-                    <img src="${item.imagen_url}" class="card-img-top" alt="${item.nombre}">
+                    <img src="${rutaImagen}" class="card-img-top" alt="${item.nombre}">
                     <div class="card-body p-2">
                         <h6 class="card-title fw-bold" style="color: var(--color-acento);">${item.nombre}</h6>
                     </div>
