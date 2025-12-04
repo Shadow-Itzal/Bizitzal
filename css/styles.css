@@ -1,71 +1,74 @@
-/* --- Estilos globales / utilidades --- */
+/* ==========================================================================
+    STYLES.CSS - Estilos Globales de Bizitzal
+   ========================================================================== */
 
-/* --- Variables y reset --- */
+/* --- 1. VARIABLES Y CONFIGURACIÓN BASE --- */
 :root {
-    /* paleta de colores */
-    --color-fondo: #22262a; /* fondo oscuro principal */
-    --color-tarjeta: #2b2f33; /* fondo de tarjetas / secciones */
-    --color-acento: #79c77a; /* acento (verde) */
-    --color-texto: #ffffff; /* texto principal (claro) */
-    --color-mutado: #9aa0a6; /* texto secundario / mutado */
+    /* Paleta de colores principal */
+    --color-fondo: #22262a;       /* Gris muy oscuro (fondo principal) */
+    --color-tarjeta: #2b2f33;     /* Gris tarjeta (bloques de contenido) */
+    --color-acento: #79c77a;      /* Verde marca (botones, iconos, énfasis) */
+    --color-texto: #ffffff;       /* Blanco (lectura principal) */
+    --color-mutado: #9aa0a6;      /* Gris claro (textos secundarios) */
 
-    /* Variables técnicas (no cuentan en la paleta visual principal) */
+    /* Variables de efectos visuales */
     --sombra-color: rgba(0, 0, 0, 0.45);
     --sombra: 0 6px 18px var(--sombra-color);
-    --glass: rgba(255, 255, 255, 0.04); /* efecto glass usado como fondo suave */
-
+    --glass: rgba(255, 255, 255, 0.04); /* Efecto vidrio sutil */
+    
+    /* Variables de estructura */
     --radius: 12px;
     --max-width: 1180px;
     --gap: 20px;
-
-    /* Alto fijo del header (usar para evitar solapamiento con el contenido) */
-    --alto-header: 72px;
+    --alto-header: 72px; /* Altura fija de la barra de navegación */
 }
 
-/* reset basico */
+/* Reset básico universal */
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 
-/* Scroll suave al hacer clic en enlaces de navegación */
+/* Configuración del scroll y altura */
 html {
     scroll-behavior: smooth; 
     height: 100%;  
 }
 
-/* Fuente y estilos base del body */
 body {
-/*     margin: 0; */
-    font-family: 'Montserrat', system-ui, -apple-system, "Segoe UI", Roboto, 'Helvetica Neue', Arial;
+    /* Tu lista de fuentes es más completa (segura para Windows viejos), usémosla */
+    font-family: 'Montserrat', system-ui, -apple-system, "Segoe UI", Roboto, 'Helvetica Neue', Arial, sans-serif;
+    
     background: linear-gradient(180deg, var(--color-fondo), #1c1f22 60%);
     color: var(--color-texto);
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
+
+    /* TRUCO VISUAL: Hace que la letra se vea más fina y elegante */
+    -webkit-font-smoothing: antialiased;      /* Chrome, Safari, Edge */
+    -moz-osx-font-smoothing: grayscale;       /* Firefox en Mac */
+
     line-height: 1.4;
     padding-bottom: 80px;
     height: 100%; 
 }
 
-/* ANIMACIÓN SUAVE ENTRE PÁGINAS en el body */
+/* --- 2. ANIMACIONES Y UTILIDADES --- */
+
+/* Fade In: Efecto de aparición suave al cargar la página */
 .fade-in {
     opacity: 0;
     animation: fadeInPage 0.6s ease forwards;
 }
 
 @keyframes fadeInPage {
-    to {
-        opacity: 1;
-    }
+    to { opacity: 1; }
 }
 
-
-/* LOADER GENERAL */
+/* Loader: Spinner de carga inicial */
 .loader-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(34, 38, 42, 0.95); /* Fondo oscuro semitransparente */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -73,68 +76,47 @@ body {
 }
 
 .spinner {
-    width: 60px;
-    height: 60px;
-    border: 6px solid #ccc;
+    width: 50px;
+    height: 50px;
+    border: 4px solid rgba(255,255,255,0.1);
     border-top-color: var(--color-acento);
     border-radius: 50%;
-    animation: spinLoader 0.9s linear infinite;
+    animation: spinLoader 0.8s linear infinite;
 }
 
 @keyframes spinLoader {
-    to {
-        transform: rotate(360deg);
-    }
+    to { transform: rotate(360deg); }
 }
 
-
-
-/* --- Contenedor centrado y ancho al maximo --- */
+/* Contenedor principal centrado */
 .container {
     width: calc(100% - 40px);
     max-width: var(--max-width);
     margin: 0 auto;
 }
 
-/* ===============================
-    HEADER / NAVEGACIÓN
-    - Header fixed: para permanecer visible siempre
-=============================== */
-
+/* --- 3. HEADER Y NAVEGACIÓN --- */
 header {
-    position: fixed; /* fixed: permanece visible en toda la página */
-    top: 0;
-    left: 0;
-    right: 0;
+    position: fixed;
+    top: 0; left: 0; right: 0;
     height: var(--alto-header);
     z-index: 9999;
-    backdrop-filter: blur(6px); /* aplica un desenfoque (blur) al fondo que esta detras del elemento, no al propio elemento */
-        -webkit-backdrop-filter: blur(6px);
-    background: linear-gradient(180deg, rgba(14, 16, 18, 0.6), rgba(14, 16, 18, 0.35));
-    border-bottom: 1px solid rgba(255, 255, 255, 0.02); 
+    /* Efecto "Blur" detrás del menú (muy profesional) */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    background: rgba(14, 16, 18, 0.8);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* Aseguramos que el contenedor interno del header se adapte a la altura fija */
-header .container {
+header .container, .nav {
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 12px;
-    padding-left: 3px;
-    padding-right: 10px;
 }
 
-/* Navegación interna: contenedor que agrupa marca/navegación/carrito */
-.nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    padding: 12px 0;
-}
-
-/* Marca / logo */
+/* Marca / Logo */
 .marca {
     display: flex;
     align-items: center;
@@ -142,81 +124,77 @@ header .container {
 }
 
 .marca img {
-    height: 46px;
-    width: 46px;
-    border-radius: 10px;
+    height: 40px;
+    width: 40px;
+    border-radius: 8px;
     object-fit: cover;
 }
 
 .marca h1 {
     font-family: 'Poppins', sans-serif;
-    font-size: 20px;
+    font-size: 18px;
     margin: 0;
+    color: #fff;
 }
 
-.marca .palabras{
-    font-size: 12px; 
+.marca .palabras {
+    font-size: 11px; 
     color: var(--color-mutado); 
-    margin-top: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
-/* Menú principal */
+/* Navegación (Enlaces) */
 nav ul {
     display: flex;
-    gap: var(--gap);
+    gap: 25px;
     list-style: none;
-    margin: 0;
-    padding: 0;
-    align-items: center;
 }
 
 nav a {
     color: var(--color-mutado);
     text-decoration: none;
     font-weight: 600;
+    font-size: 16px;
+    transition: color 0.3s ease;
 }
 
 nav a:hover {
-    color: var(--color-texto);
+    color: var(--color-acento);
 }
 
-/* Carrito */
+/* Carrito (Icono en header) */
 .carrito {
-    display: flex;
-    align-items: center;
-    gap: 10px;
     position: relative;
     cursor: pointer;
+    padding: 5px;
 }
 
 .contador {
     position: absolute;
-    right: -6px;
-    top: -6px;
+    right: -5px;
+    top: -5px;
     background: var(--color-acento);
     color: #042204;
-    padding: 4px 6px;
-    border-radius: 999px;
-    font-weight: 700;
-    font-size: 12px;
+    padding: 2px 6px;
+    border-radius: 10px;
+    font-weight: 800;
+    font-size: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
-    /* =====================
-        Hero
-    ===================== */
+/* --- 4. SECCIÓN HERO (Principal) --- */
 
-    .seccion_heroe {
+.seccion_heroe {
     display: grid;
     grid-template-columns: 1fr;
     gap: var(--gap);
     align-items: center;
-    /* padding: 34px 0 28px; */
     position: relative;
     padding-top: var(--alto-header);
     margin-top: 20px;
     margin-bottom: 50px;
 }
-
 
 .heroe_interior {
     background-image: url('../asset/img/hero-5.jpg');
@@ -227,7 +205,6 @@ nav a:hover {
     border-radius: var(--radius);
     padding: 28px;
     box-shadow: var(--sombra);
-
     display: flex;
     gap: var(--gap);
     align-items: flex-start;
@@ -294,6 +271,24 @@ nav a:hover {
     cursor: pointer;
 }
 
+.btn_fantasma_1:hover {
+    border-color: var(--color-acento);
+    color: var(--color-acento);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /* --- Estilo destacado para el mensaje de contacto --- */
@@ -339,12 +334,7 @@ nav a:hover {
 }
 
 
-
-
-
-/* ===============================
-    Productos destacados (grid)
-================================== */
+/* --- 5. GRID DE PRODUCTOS (Tarjetas) --- */
 .productos {
     margin-top: 24px;
     margin-bottom: 24px;
@@ -360,8 +350,9 @@ nav a:hover {
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
     gap: var(--gap);
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Responsive automático */
+    margin-top: 30px;
 }
 
 .tarjeta {
@@ -401,7 +392,10 @@ nav a:hover {
 }
 
 .precio {
-    font-weight: 700
+    /* font-weight: 700 */
+    color: var(--color-acento);
+    font-weight: bold;
+    font-size: 14px;
 }
 
 .tarjeta h3 {
@@ -429,6 +423,26 @@ nav a:hover {
     color: var(--color-mutado);
     cursor: pointer
 }
+
+.btn_fantasma:hover {
+    border-color: var(--color-acento);
+    color: var(--color-acento);
+}
+
+.acciones {
+    margin-top: auto; /* Empuja botones al final */
+    display: flex;
+    gap: 10px;
+}
+
+.acciones button {
+    flex: 1;
+    font-size: 12px;
+    padding: 8px;
+}
+
+
+
 
 /* ================================
     Sección Reseñas
@@ -480,7 +494,7 @@ nav a:hover {
 
 .reseñas_grid {
     display: grid;
-    grid-template-columns: 1fr; 
+    grid-template-columns: 1fr;  
     gap: 2rem; 
 }
 
@@ -501,7 +515,6 @@ nav a:hover {
 }
 
 .reseña_comilla {
-
     font-size: 1.5rem; 
     color: var(--color-acento);
     margin-bottom: 0.75rem; 
@@ -554,11 +567,11 @@ nav a:hover {
     font-family: 'poppins';
     text-align: center;
     margin-bottom: 8px;
-
 }
 
 .parrafo_nosotros {
     color: var(--color-mutado);
+    font-size: 1.5em;
 }
 
 .centrado{
@@ -635,13 +648,14 @@ textarea::placeholder {
 ========================================================= */
 .pie_pagina {
     background-color: var(--color-fondo);
-    padding: 60px 0 20px 0;
+    padding: 50px 0 20px 0;
     border-top: 1px solid rgba(255, 255, 255, 0.02);
 }
 
 .grid_pie_pagina {
     display: grid;
-    grid-template-columns: 2fr 1fr 2fr;
+    /* grid-template-columns: 2fr 1fr 2fr; */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: var(--gap);
     padding-bottom: 40px;
 }
@@ -649,7 +663,7 @@ textarea::placeholder {
 .columna_pie_pagina h4 {
     color: var(--color-acento);
     margin-bottom: 20px;
-    font-size: 1.1em;
+    font-size: 1em;
 }
 
 
@@ -909,6 +923,95 @@ textarea::placeholder {
 #carrito_contenido img {
     border-radius: 6px;
     border: 1px solid rgba(255,255,255,0.1);
+}
+
+
+
+
+/* =========================================
+   ESTILOS DE MODALES LEGALES (Popups)
+   ========================================= */
+
+/* 1. Fondo oscuro detrás del modal */
+.modal-overlay {
+    position: fixed;
+    inset: 0; /* Ocupa toda la pantalla */
+    background: rgba(0, 0, 0, 0.7); /* Oscuro semitransparente */
+    backdrop-filter: blur(5px); /* Efecto borroso elegante */
+    z-index: 10000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none; /* No bloquea clicks si está oculto */
+}
+
+/* Cuando está activo (visible) */
+.modal-overlay.activo {
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* 2. La cajita del modal */
+.modal-legal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9); /* Centrado y un poco pequeño */
+    width: 90%;
+    max-width: 500px;
+    background-color: var(--color-tarjeta);
+    color: var(--color-texto);
+    padding: 30px;
+    border-radius: var(--radius);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    z-index: 10001;
+    
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Rebote suave */
+}
+
+/* Modal activo */
+.modal-legal.activo {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* 3. Elementos internos */
+.modal-titulo {
+    font-family: 'Poppins', sans-serif;
+    color: var(--color-acento);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.modal-contenido p {
+    color: var(--color-mutado);
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+/* Botón de cerrar (X) */
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: transparent;
+    border: none;
+    color: var(--color-mutado);
+    font-size: 24px;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.modal-close:hover {
+    color: var(--color-acento);
+}
+
+/* Clase utilitaria para ocultar (por seguridad) */
+.hidden {
+    display: none;
 }
 
 

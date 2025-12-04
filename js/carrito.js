@@ -12,9 +12,7 @@
 
 (function () {
     // Determina la ruta correcta a data (carrito.html está en /pages/, por lo general)
-    const base = window.location.pathname.includes("/pages/")
-        ? "../data/"
-        : "./data/";
+    const base = window.location.pathname.includes("/pages/") ? "../data/" : "./data/";
     const RUTA_KITS = base + "kits_bizitzal.json";
 
     // UTIL: funciones locales que reutilizan las globales en script.js
@@ -35,6 +33,7 @@
         if (!contenedor || !totalSpan) return;
 
         const carrito = obtenerCarritoLocal();
+        // cargamos los productos reales para tener precios y fotos actualizadas
         const kits = await fetch(RUTA_KITS).then((r) => r.json());
 
         contenedor.innerHTML = "";

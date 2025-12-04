@@ -14,9 +14,7 @@
 
 (function () {
     // Detectar base para JSON (si estamos en /pages/ usamos ../data/)
-    const base = window.location.pathname.includes("/pages/")
-        ? "../data/"
-        : "./data/";
+    const base = window.location.pathname.includes("/pages/") ? "../data/" : "./data/";
     const RUTA_KITS = base + "kits_bizitzal.json";
     const RUTA_PROXIMOS = base + "proximos_kits.json";
     const RUTA_RELACIONADOS = base + "relacionados_bizitzal.json";
@@ -100,6 +98,7 @@
                     item.innerHTML = `<img src="${rutaImagen}" class="d-block w-100" style="object-fit: cover; max-height: 350px;">`;
                     carruselEl.appendChild(item);
 
+                    /* crear boton indicador (los guines abajo en carrusel) */
                     const btn = document.createElement("button");
                     btn.type = "button";
                     btn.setAttribute("data-bs-target", "#carrusel_producto");
@@ -118,7 +117,7 @@
             const botonAgregar = document.querySelector(".btn_primario");
             if (botonAgregar) {
                 // Limpiamos listeners anteriores clonando el botón (truco rápido) o simplemente asignando onclick
-                // Para evitar complicaciones, usaremos onclick directo si prefieres, 
+                // Para evitar complicaciones, usaremos onclick directo 
 
                 botonAgregar.onclick = () => {
                     const inputCantidad = document.getElementById("cantidad_producto");
@@ -150,11 +149,11 @@
             const proximos = await fetch(RUTA_PROXIMOS).then((r) => r.json());
             proximos.slice(0, 2).forEach((item) => {
                 const card = document.createElement("div");
-                card.className = "card mb-3 p-2 border-0";
+                card.className = "card mb-3 p-3 border-0";
                 card.style.backgroundColor = "var(--color-tarjeta)";
                 card.innerHTML = `
                     <img src="${item.imagen_url}" class="card-img-top" alt="${item.nombre}">
-                    <div class="card-body p-2">
+                    <div class="card-body p-3">
                         <h6 class="card-title fw-bold" style="color: var(--color-acento);">${item.nombre}</h6>
                     </div>
                 `;
@@ -188,7 +187,7 @@
                 // ------------------------------------
 
                 const card = document.createElement("div");
-                card.className = "card mb-3 p-2 border-0";
+                card.className = "card mb-3 p-3 border-0";
                 card.style.backgroundColor = "var(--color-tarjeta)";
                 card.style.cursor = "pointer";
                 
@@ -199,7 +198,7 @@
 
                 card.innerHTML = `
                     <img src="${rutaImagen}" class="card-img-top" alt="${item.nombre}">
-                    <div class="card-body p-2">
+                    <div class="card-body p-3">
                         <h6 class="card-title fw-bold" style="color: var(--color-acento);">${item.nombre}</h6>
                     </div>
                 `;
@@ -212,7 +211,6 @@
 
     // Toast simple (bootstrap toast optional if usas bootstrap)
     function showToast(text) {
-        // Si existe un toast container de bootstrap, usarlo; si no, crear un pequeño mensaje temporal
         const toastSelector = document.querySelector("#toast_carrito .toast");
         if (toastSelector && typeof bootstrap !== "undefined") {
             const toast = new bootstrap.Toast(toastSelector);

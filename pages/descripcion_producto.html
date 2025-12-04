@@ -149,15 +149,15 @@
     </main>
 
     <div id="toast_carrito" class="toast-container position-fixed bottom-0 end-0 p-3">
-    <div class="toast text-white bg-success" role="alert">
-        <div class="toast-body">
-            ¡Producto agregado al carrito! 🧺✨
+        <div class="toast text-white bg-success" role="alert">
+            <div class="toast-body">
+                ¡Producto agregado al carrito! 🧺✨
+            </div>
         </div>
     </div>
-</div>
 
 
-    <footer class="pie_pagina" id="pie_pagina" >
+    <footer class="pie_pagina" id="pie_pagina">
         <div class="container grid_pie_pagina">
 
             <div class="columna_pie_pagina columna_marca">
@@ -189,7 +189,9 @@
                         <!-- SVG Pinterest -->
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12.016 2.016c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8zM15 15l-3-3v-5h3v5l-3 3z"></path>
+                            <path
+                                d="M12.016 2.016c-5.523 0-10 4.477-10 10s4.477 10 10 10 10-4.477 10-10-4.477-10-10-10zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8zM15 15l-3-3v-5h3v5l-3 3z">
+                            </path>
                         </svg>
                     </a>
                 </div>
@@ -199,10 +201,26 @@
             <div class="columna_pie_pagina informacion_legal">
                 <h4>Información Legal</h4>
                 <ul>
-                    <li><a href="#">Términos y Condiciones</a></li>
-                    <li><a href="#">Política de Privacidad</a></li>
-                    <li><a href="#">Política de Envíos</a></li>
-                    <li><a href="#">Devoluciones</a></li>
+                    <li>
+                        <a href="javascript:void(0)" onclick="abrirModal('modal_terminos')">
+                            Términos y Condiciones
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" onclick="abrirModal('modal_privacidad')">
+                            Política de Privacidad
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" onclick="abrirModal('modal_envios')">
+                            Política de Envíos
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" onclick="abrirModal('modal_devoluciones')">
+                            Devoluciones
+                        </a>
+                    </li>
                 </ul>
             </div>
 
@@ -212,11 +230,8 @@
                 <p>Suscríbete para recibir ofertas y tips creativos.</p>
                 <form id="form_newsletter" action="https://formspree.io/f/mrbyonpr" method="POST">
                     <div class="formulario_newsletter">
-                        <input 
-                            type="email" 
-                            id="entrada_newsletter" 
-                            name="email" required placeholder="Escribe tu correo electrónico"
-                        />
+                        <input type="email" id="entrada_newsletter" name="email" required
+                            placeholder="Escribe tu correo electrónico" />
                         <button class="btn_primario" type="submit">Suscribirse</button>
                     </div>
                     <p id="mensaje_newsletter" class="mensaje_newsletter"></p>
@@ -231,6 +246,65 @@
         </div>
 
     </footer>
+
+
+    <!-- Como se veria el contenido de los modales de terminos legales -->
+
+    <div id="modal_overlay" class="modal-overlay hidden" onclick="cerrarTodosModales()"></div>
+
+    <div id="modal_terminos" class="modal-legal hidden">
+        <button class="modal-close" onclick="cerrarModal('modal_terminos')">&times;</button>
+        <h3 class="modal-titulo">Términos y Condiciones</h3>
+        <div class="modal-contenido">
+            <p>Bienvenido a Bizitzal. Al navegar por nuestro sitio, aceptas nuestros términos.</p>
+            <p>1. <b>Productos:</b> Toda la información de precios y stock puede cambiar sin previo aviso.</p>
+            <p>2. <b>Propiedad Intelectual:</b> Los contenidos, imágenes y diseños pertenecen a Bizitzal.</p>
+            <p>3. <b>Uso:</b> Este sitio es para uso personal y creativo.</p>
+        </div>
+        <button class="btn_primario mt-3" onclick="cerrarModal('modal_terminos')">Entendido</button>
+    </div>
+
+    <div id="modal_privacidad" class="modal-legal hidden">
+        <button class="modal-close" onclick="cerrarModal('modal_privacidad')">&times;</button>
+        <h3 class="modal-titulo">Política de Privacidad</h3>
+        <div class="modal-contenido">
+            <p>En Bizitzal respetamos tu privacidad.</p>
+            <p>Recopilamos únicamente información esencial (nombre, correo) para mejorar tu experiencia o enviarte el
+                newsletter si te suscribes.</p>
+            <p>No compartimos tus datos con terceros sin tu autorización.</p>
+        </div>
+        <button class="btn_primario mt-3" onclick="cerrarModal('modal_privacidad')">Aceptar</button>
+    </div>
+
+    <div id="modal_envios" class="modal-legal hidden">
+        <button class="modal-close" onclick="cerrarModal('modal_envios')">&times;</button>
+        <h3 class="modal-titulo">Política de Envíos</h3>
+        <div class="modal-contenido">
+            <p><b>1. Zonas de cobertura:</b> Realizamos envíos a todo el país a través de correo privado.</p>
+            <p><b>2. Tiempos de procesamiento:</b> Los pedidos se preparan en 24-48 horas hábiles una vez confirmado el
+                pedido.</p>
+            <p><b>3. Costos y Coordinación:</b> Al finalizar tu solicitud, nos pondremos en contacto contigo para
+                cotizar el envío exacto a tu domicilio y elegir el transporte que prefieras.</p>
+        </div>
+        <button class="btn_primario mt-3" onclick="cerrarModal('modal_envios')">Entendido</button>
+    </div>
+
+    <div id="modal_devoluciones" class="modal-legal hidden">
+        <button class="modal-close" onclick="cerrarModal('modal_devoluciones')">&times;</button>
+        <h3 class="modal-titulo">Política de Devoluciones</h3>
+        <div class="modal-contenido">
+            <p>Queremos que ames tu kit Bizitzal. Si no es así, tienes opciones:</p>
+            <p><b>Plazo:</b> Tienes 30 días corridos desde que recibes tu compra para solicitar un cambio o devolución.
+            </p>
+            <p><b>Condiciones:</b> El producto debe estar sin uso, en su empaque original y con todas las piezas
+                completas.</p>
+            <p><b>Reembolsos:</b> Una vez recibido y revisado el producto, procesaremos el reembolso en el mismo medio
+                de pago utilizado.</p>
+        </div>
+        <button class="btn_primario mt-3" onclick="cerrarModal('modal_devoluciones')">Aceptar</button>
+    </div>
+
+
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>

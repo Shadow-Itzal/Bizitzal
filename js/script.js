@@ -16,32 +16,30 @@
     ------------------------------------------------------------------------- 
 */
 
-/*  -------------------------  
-        UTIL: calcular base para rutas de /data/ (compatible con /pages/)
-    ------------------------- */
+/* =========================================================================
+//        SCRIPT.JS  —  Lógica Global (Header, Carrito Global, Utilidades)
+//    ========================================================================== */
+
+/* 1. CONFIGURACIÓN DE RUTAS
+    Detecta si estamos en una subcarpeta (/pages/) para arreglar rutas relativas.
+*/
 function dataBasePath() {
-    // Si la ruta contiene /pages/ asumimos que estamos en una subcarpeta y necesitamos ../data/
-    return window.location.pathname.includes("/pages/")
-        ? "../data/"
-        : "./data/";
+    return window.location.pathname.includes("/pages/") ? "../data/" : "./data/";
 }
 
-/*  -------------------------
-        HERO
-    ------------------------- */
+/* 2. NAVEGACIÓN (heroe)
+    Scroll suave a la sección de kits desde el Hero.
+*/
 function scrollToKits() {
     const seccionKits = document.getElementById("kits");
     if (seccionKits) seccionKits.scrollIntoView({ behavior: "smooth" });
 }
 
-/*  -------------------------
-        VIEW PRODUCT
-    - Busca en kits_bizitzal.json por el atributo data-name de la tarjeta
-    - Redirige a descripcion_producto.html?id=<ID del JSON>
-    ------------------------- */
 
-/* Reemplaza la función viewProduct antigua por esta: */
-
+/* 3. VER PRODUCTO (Redirección Inteligente)
+   Toma el ID de la tarjeta HTML y redirige a descripcion_producto.html
+   sin importar si estamos en el index o en otra página.
+*/
 function viewProduct(btnOrEl) {
     // 1. Encontrar la tarjeta padre
     const tarjeta = btnOrEl.closest("article");
@@ -70,12 +68,14 @@ function viewProduct(btnOrEl) {
 // Exponer globalmente para que los onclick inline funcionen
 window.viewProduct = viewProduct;
 
+
+
 /*  -------------------------
         WHATSAPP / MENSAJES DE CONTACTO (pequeño toast visual)
     ------------------------- */
 function openWhatsApp(origen) {
     mostrarMensajeContacto(
-        "Opción de contacto por WhatsApp: próximamente disponible.",
+        "Contacto por WhatsApp: próximamente disponible.",
         false,
         origen
     );
@@ -250,6 +250,34 @@ function mostrarMensajeContacto(texto, esError = false, origen = null) {
     if (loader) loader.style.display = "none";
 })();
 
+
+/* 4. NOTIFICACIONES (Toast Premium)
+   Crea una notificación flotante elegante cuando se agrega algo al carrito.
+*/
+function showMiniToast(texto) {
+    // Evitar acumulación de toasts
+    const existente = document.querySelector('.toast-premium');
+    if (existente) existente.remove();
+
+    const msg = document.createElement("div");
+    msg.className = "toast-premium"; // Usa la clase CSS nueva
+    msg.innerHTML = `<span>🛒</span> ${texto}`; 
+    
+    document.body.appendChild(msg);
+
+    // Pequeño delay para permitir que la animación CSS ocurra
+    setTimeout(() => msg.classList.add("mostrar"), 10);
+
+    // Desaparecer después de 2.5 segundos
+    setTimeout(() => {
+        msg.classList.remove("mostrar");
+        setTimeout(() => msg.remove(), 400); // Esperar a que termine la animación de salida
+    }, 2500);
+}
+// Exponemos globalmente
+window.showMiniToast = showMiniToast;
+
+
 /*  -------------------------
         SISTEMA GLOBAL DE CARRITO
     - Estas funciones son simples y globales para que otros scripts las usen
@@ -262,6 +290,7 @@ function guardarCarrito(carrito) {
     localStorage.setItem("carritoBizitzal", JSON.stringify(carrito));
 }
 
+// funcion principal para agregar items
 function agregarAlCarrito(id, cantidad = 1) {
     let carrito = obtenerCarrito();
     const existente = carrito.find((p) => p.id === id);
@@ -272,6 +301,7 @@ function agregarAlCarrito(id, cantidad = 1) {
     }
     guardarCarrito(carrito);
     actualizarContadorCarrito();
+
 }
 
 // Actualiza el contador visual (el badge del header)
@@ -289,6 +319,9 @@ function actualizarContadorCarrito() {
     - Obtiene el ID desde el <article class="tarjeta">
     - Llama a agregarAlCarrito()
 ---------------------------------------------- */
+
+/* funcion puente para los botones del HTML (data-id) */
+
 function addToCartFromBtn(btn) {
     try {
         // Encontrar tarjeta padre
@@ -384,5 +417,62 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
+
+
+/* =========================================
+   SISTEMA DE MODALES LEGALES
+   ========================================= */
+
+const overlay = document.getElementById("modal_overlay");
+
+// Abrir un modal específico por su ID
+function abrirModal(idModal) {
+    const modal = document.getElementById(idModal);
+    if (modal && overlay) {
+        // Quitamos la clase 'hidden' para asegurar que existan en el DOM
+        overlay.classList.remove("hidden"); 
+        modal.classList.remove("hidden");
+        
+        // Pequeño delay para permitir que la animación CSS (opacity/transform) funcione
+        setTimeout(() => {
+            overlay.classList.add("activo");
+            modal.classList.add("activo");
+        }, 10);
+    }
+}
+
+// Cerrar un modal específico
+function cerrarModal(idModal) {
+    const modal = document.getElementById(idModal);
+    if (modal && overlay) {
+        modal.classList.remove("activo");
+        overlay.classList.remove("activo");
+
+        // Esperar a que termine la animación (0.3s) antes de ocultar con display:none
+        setTimeout(() => {
+            modal.classList.add("hidden");
+            overlay.classList.add("hidden");
+        }, 300);
+    }
+}
+
+// Cerrar cualquier modal abierto (al hacer click afuera)
+function cerrarTodosModales() {
+    const modales = document.querySelectorAll(".modal-legal.activo");
+    modales.forEach(m => {
+        m.classList.remove("activo");
+        setTimeout(() => m.classList.add("hidden"), 300);
+    });
+    
+    if (overlay) {
+        overlay.classList.remove("activo");
+        setTimeout(() => overlay.classList.add("hidden"), 300);
+    }
+}
+
+// Exponer funciones al HTML
+window.abrirModal = abrirModal;
+window.cerrarModal = cerrarModal;
+window.cerrarTodosModales = cerrarTodosModales;
 
 
