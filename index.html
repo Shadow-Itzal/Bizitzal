@@ -10,9 +10,32 @@
     <!-- link para favicon -->
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 
+
     <!-- meta para SEO basico -->
+
+    <!-- descripcion SEO (meta description) -->
+    <!-- debe invitar al clic y describir lo que el usuario encontrara -->
     <meta name="description"
-        content="Tienda de kits de manualidades: tejidos, amigurumi, resina, lettering y más. Todo lo que necesitas para crear." />
+        content="Tienda de kits de manualidades: tejidos, amigurumi, resina, lettering y más. Todo lo que necesitas para inspirarate y crear." />
+
+    <!-- keyword (opcionales hoy en dia) -->
+    <!-- palabras para buscar/buscadores -->
+    <meta name="keyword" content="tejido, resina, lettering, velas, pintura, origami, kits artesanales, manualidades">
+
+    <!-- etiquetas open graph (para compartir en redes) -->
+    <!-- esto mejora como se ve la pagina cuando se comparte en facebook/instagram/whatsapp -->
+    <meta property="og:title" content="Bizitzal | Kits Creativos y DIY">
+    <meta property="og:description"
+        content="Encuentra kits y materiales para todas tus ideas y proyectos. Calidad y creatividad en cada producto.">
+    <meta property="og:image" content="asset/img/Logo-negro-copia.jpg">
+    <meta property="og:url" content="https://shadow-itzal.github.io/Bizitzal/"> <!-- esta sirve para redes sociales -->
+    <meta property="og:type" content="website">
+
+    <!-- URL canonica (Funciona para evitar problemas de “contenido duplicado”.) -->
+    <!-- Sirve para decirle a Google:
+        👉 “Esta es la URL principal/real de esta página. Si encuentras otras con contenido parecido, esta es la que debe indexar.” -->
+    <link rel="canonical" href="https://shadow-itzal.github.io/Bizitzal/">
+
 
     <!-- fuente(s): cuerpo y titulares (limitadas a 2 familias) -->
     <link
@@ -35,7 +58,7 @@
 
             <!-- Lado izquierdo: marca / logo -->
             <div class="marca">
-                <img src="./asset/img/Logo-negro-copia.jpg" alt="Logo Bizitzal" />
+                <a href="index.html"><img src="./asset/img/Logo-negro-copia.jpg" alt="Logo Bizitzal" /></a>
                 <div>
                     <h1>Bizitzal</h1>
                     <div class="palabras">
@@ -44,16 +67,27 @@
                 </div>
             </div>
 
+
+            <!-- menu hamburguesa para celulares y tablets -->
+            <button class="nav-toggle" id="nav_toggle_btn" aria-label="abrir menu">
+                <span class="hamburguesa"></span>
+                <span class="hamburguesa"></span>
+                <span class="hamburguesa"></span>
+            </button>
+
+
             <!-- Navegación principal (enlaces internos) -->
-            <nav>
-                <ul>
-                    <li><a href="#home">Inicio</a></li>
-                    <li><a href="#kits">Kits</a></li>
-                    <li><a href="#reviews">Reseñas</a></li>
-                    <li><a href="#about">Nosotros</a></li>
-                    <li><a href="#contact">Contacto</a></li>
-                </ul>
-            </nav>
+            <div class="nav-menu" id="nav_menu_list">
+                <nav>
+                    <ul class="nav-links">
+                        <li><a href="#home">Inicio</a></li>
+                        <li><a href="#kits">Kits</a></li>
+                        <li><a href="#reviews">Reseñas</a></li>
+                        <li><a href="#about">Nosotros</a></li>
+                        <li><a href="#contact">Contacto</a></li>
+                    </ul>
+                </nav>
+            </div>
 
             <!-- Icono de carrito con contador (se actualiza por JS) -->
             <div class="carrito" id="boton_carrito" aria-label="Abrir carrito">
@@ -63,6 +97,7 @@
                 </svg>
                 <div class="contador" id="contador_carrito">0</div>
             </div>
+
 
         </div>
     </header>
@@ -348,7 +383,7 @@
 
             <div class="columna_pie_pagina columna_marca">
                 <div class="marca">
-                    <img src="./asset/img/Logo-negro-copia.jpg" alt="Logo Bizitzal" />
+                    <img src="./asset/img/Logo-negro-copia.jpg" alt= "Logo Bizitzal" />
                     <div>
                         <h3>Bizitzal</h3>
                         <p class="lema">Inspira tu creatividad.</p>
@@ -476,7 +511,8 @@
         <h3 class="modal-titulo">Política de Devoluciones</h3>
         <div class="modal-contenido">
             <p>Queremos que ames tu kit Bizitzal. Si no es así, tienes opciones:</p>
-            <p><b>Plazo:</b> Tienes 30 días corridos desde que recibes tu compra para solicitar un cambio o devolución. </p>
+            <p><b>Plazo:</b> Tienes 30 días corridos desde que recibes tu compra para solicitar un cambio o devolución.
+            </p>
             <p><b>Condiciones:</b> El producto debe estar sin uso, en su empaque original y con todas las piezas completas.</p>
             <p><b>Reembolsos:</b> Una vez recibido y revisado el producto, procesaremos el reembolso en el mismo medio de pago utilizado.</p>
         </div>

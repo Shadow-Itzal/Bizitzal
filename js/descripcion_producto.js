@@ -209,7 +209,7 @@
         }
     }
 
-    // Toast simple (bootstrap toast optional if usas bootstrap)
+    // Toast simple 
     function showToast(text) {
         const toastSelector = document.querySelector("#toast_carrito .toast");
         if (toastSelector && typeof bootstrap !== "undefined") {

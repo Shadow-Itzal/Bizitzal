@@ -12,22 +12,20 @@
         - Sistema global de carrito:
             obtenerCarrito(), guardarCarrito(), agregarAlCarrito(), actualizarContadorCarrito()
         - Funciones auxiliares para rutas relativas (detecta si estamos en /pages/)
+        - Uso de modals para ver terminos y condiciones
+        - Funcion del menu hamburguesa
     
     ------------------------------------------------------------------------- 
 */
 
-/* =========================================================================
-//        SCRIPT.JS  —  Lógica Global (Header, Carrito Global, Utilidades)
-//    ========================================================================== */
-
-/* 1. CONFIGURACIÓN DE RUTAS
+/* CONFIGURACIÓN DE RUTAS
     Detecta si estamos en una subcarpeta (/pages/) para arreglar rutas relativas.
 */
 function dataBasePath() {
     return window.location.pathname.includes("/pages/") ? "../data/" : "./data/";
 }
 
-/* 2. NAVEGACIÓN (heroe)
+/* NAVEGACIÓN (heroe)
     Scroll suave a la sección de kits desde el Hero.
 */
 function scrollToKits() {
@@ -36,12 +34,12 @@ function scrollToKits() {
 }
 
 
-/* 3. VER PRODUCTO (Redirección Inteligente)
-   Toma el ID de la tarjeta HTML y redirige a descripcion_producto.html
-   sin importar si estamos en el index o en otra página.
+/* VER PRODUCTO (Redirección Inteligente)
+    Toma el ID de la tarjeta HTML y redirige a descripcion_producto.html
+    sin importar si estamos en el index o en otra página.
 */
 function viewProduct(btnOrEl) {
-    // 1. Encontrar la tarjeta padre
+    // Encontrar la tarjeta padre
     const tarjeta = btnOrEl.closest("article");
     
     if (!tarjeta) {
@@ -49,7 +47,7 @@ function viewProduct(btnOrEl) {
         return;
     }
 
-    // 2. Obtener el ID directamente del HTML (data-id)
+    // Obtener el ID directamente del HTML (data-id)
     const idProducto = tarjeta.dataset.id;
     
     if (!idProducto) {
@@ -57,11 +55,11 @@ function viewProduct(btnOrEl) {
         return;
     }
 
-    // 3. Definir la ruta correcta dependiendo de dónde estemos
+    // Definir la ruta correcta dependiendo de dónde estemos
     const estoyEnPages = window.location.pathname.includes("/pages/");
     const baseRoute = estoyEnPages ? "./descripcion_producto.html" : "./pages/descripcion_producto.html";
 
-    // 4. Redirigir CON el ID
+    // Redirigir con el ID
     window.location.href = `${baseRoute}?id=${encodeURIComponent(idProducto)}`;
 }
 
@@ -82,7 +80,6 @@ function openWhatsApp(origen) {
 }
 
 /*
-    * mostrarMensajeContacto(texto, esError=false, origenElement=null)
     * - Crea un mensaje temporal (párrafo) bajo el elemento "origen" o en el formulario.
 */
 function mostrarMensajeContacto(texto, esError = false, origen = null) {
@@ -110,7 +107,7 @@ function mostrarMensajeContacto(texto, esError = false, origen = null) {
 }
 
 /*  -------------------------
-        FORMULARIO DE CONTACTO (index & página de producto)
+        FORMULARIO DE CONTACTO 
     - Usa Formspree (en action); valida y muestra feedback
     ------------------------- */
 (function initContactoForm() {
@@ -251,7 +248,7 @@ function mostrarMensajeContacto(texto, esError = false, origen = null) {
 })();
 
 
-/* 4. NOTIFICACIONES (Toast Premium)
+/* NOTIFICACIONES (Toast Premium)
    Crea una notificación flotante elegante cuando se agrega algo al carrito.
 */
 function showMiniToast(texto) {
@@ -420,7 +417,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 /* =========================================
-   SISTEMA DE MODALES LEGALES
+    SISTEMA DE MODALES LEGALES
    ========================================= */
 
 const overlay = document.getElementById("modal_overlay");
@@ -476,3 +473,30 @@ window.cerrarModal = cerrarModal;
 window.cerrarTodosModales = cerrarTodosModales;
 
 
+
+// MENU HAMBURGUESA - todas las paginas - HEADER RESPONSIVO (MÓVIL) - Versión con animación 
+
+document.addEventListener("DOMContentLoaded", function() {
+    const toggleBtn = document.getElementById("nav_toggle_btn"); // Botón hamburguesa
+    const navMenu = document.getElementById("nav_menu_list");     // Menú de enlaces
+
+    if (toggleBtn && navMenu) {
+        
+        // 1. Alternar menú y animación de hamburguesa/X
+        toggleBtn.addEventListener("click", function() {
+            toggleBtn.classList.toggle("active");
+            navMenu.classList.toggle("active");
+        });
+
+        // 2. Cerrar el menú si se hace clic en un enlace (para navegar)
+        const navLinks = navMenu.querySelectorAll('a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (navMenu.classList.contains("active")) {
+                    navMenu.classList.remove("active");
+                    toggleBtn.classList.remove("active");
+                }
+            });
+        });
+    }
+});

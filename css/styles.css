@@ -2,7 +2,7 @@
     STYLES.CSS - Estilos Globales de Bizitzal
    ========================================================================== */
 
-/* --- 1. VARIABLES Y CONFIGURACIÓN BASE --- */
+/* --- VARIABLES Y CONFIGURACIÓN BASE --- */
 :root {
     /* Paleta de colores principal */
     --color-fondo: #22262a;       /* Gris muy oscuro (fondo principal) */
@@ -37,22 +37,20 @@ html {
 }
 
 body {
-    /* Tu lista de fuentes es más completa (segura para Windows viejos), usémosla */
     font-family: 'Montserrat', system-ui, -apple-system, "Segoe UI", Roboto, 'Helvetica Neue', Arial, sans-serif;
-    
     background: linear-gradient(180deg, var(--color-fondo), #1c1f22 60%);
     color: var(--color-texto);
 
     /* TRUCO VISUAL: Hace que la letra se vea más fina y elegante */
-    -webkit-font-smoothing: antialiased;      /* Chrome, Safari, Edge */
-    -moz-osx-font-smoothing: grayscale;       /* Firefox en Mac */
+        -webkit-font-smoothing: antialiased;      /* Chrome, Safari, Edge */
+        -moz-osx-font-smoothing: grayscale;       /* Firefox en Mac */
 
     line-height: 1.4;
     padding-bottom: 80px;
     height: 100%; 
 }
 
-/* --- 2. ANIMACIONES Y UTILIDADES --- */
+/* --- ANIMACIONES Y UTILIDADES --- */
 
 /* Fade In: Efecto de aparición suave al cargar la página */
 .fade-in {
@@ -95,7 +93,7 @@ body {
     margin: 0 auto;
 }
 
-/* --- 3. HEADER Y NAVEGACIÓN --- */
+/* --- HEADER Y NAVEGACIÓN --- */
 header {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -183,7 +181,124 @@ nav a:hover {
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
-/* --- 4. SECCIÓN HERO (Principal) --- */
+
+/* ocultamos el boton de toggle en destop */
+.nav-toggle {
+    display: none;
+}
+
+/* =========================================================
+    ESTILOS DE BOTÓN HAMBURGUESA Y ANIMACIÓN 
+   ========================================================= */
+
+/* Estilos del botón de toggle (para ser visibles en móvil) */
+.nav-toggle {
+    display: none; /* Oculto por defecto */
+    flex-direction: column;
+    cursor: pointer;
+    background: none; /*  Usamos fondo transparente, no gris (#EEEEEE) */
+    border: none; 
+    padding: 5px; /* Pequeño padding alrededor */
+    /* Lo colocamos con margen a la derecha para que quede junto al carrito */
+    margin-right: 20px; 
+    z-index: 1000;
+}
+
+.hamburguesa {
+    display: block;
+    height: 3px;
+    width: 25px;
+    background: var(--color-acento); 
+    margin: 3px 0;
+    border-radius: 3px;
+    transition: 0.4s; /* Transición para la animación */
+}
+
+/* Animación para convertir el menú hamburguesa en una 'X' */
+.nav-toggle.active .hamburguesa:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 7px); /* mueve la linea para quedar en diagonal */
+}
+
+.nav-toggle.active .hamburguesa:nth-child(2) {
+    opacity: 0; /* oculta la 2° linea */
+}
+
+.nav-toggle.active .hamburguesa:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -7px);
+}
+
+
+/* =========================================================
+    MEDIA QUERY: ADAPTACIÓN A MÓVIL (768px o menos)
+   ========================================================= */
+@media (max-width: 768px) {
+    
+    /* MOSTRAR EL BOTÓN DE HAMBURGUESA Y ELIMINAR ESPACIO DE MARCA */
+    .nav-toggle {
+        display: flex; /* Muestra el menú hamburguesa en pantallas pequeñas */
+    }
+
+    /* La marca sigue a la izquierda */
+    .marca {
+        margin-right: auto; /* Empuja el carrito y el toggle a la derecha */
+    }
+
+    /* OCULTAR Y REDISEÑAR EL MENÚ DE NAVEGACIÓN */
+    .nav-menu {
+        display: none; /* Oculta los enlaces de navegación por defecto */
+        
+        /* Posicionamiento y estilos de menú desplegado */
+        position: absolute;
+        top: var(--alto-header); /* Empieza debajo del header */
+        right: 0; /* Lo alineamos a la derecha */
+        width: 40%; /* Ocupa el 100% del ancho para ser una barra */
+        max-width: 200px; /* Limita el ancho del menú desplegable */
+        height: auto; /* Ajusta la altura al contenido */
+        background-color: var(--color-tarjeta); /* Fondo oscuro */
+        box-shadow: var(--sombra);
+        padding: 20px 0;
+        border-radius: 0 0 0 8px;
+        
+        /* Aseguramos que los enlaces se apilen verticalmente */
+        flex-direction: column; 
+        text-align: center;
+        
+        /* Efecto de transición (opcional, para deslizar el menú desde la derecha) */
+        /* Si quieres deslizar: */
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in-out;
+        z-index: 999; 
+    }
+
+    /* Muestra el menú cuando está activo */
+    .nav-menu.active {
+        display: flex; /* Muestra el menú como una columna */
+        transform: translateX(0); /* Lo desliza a la vista */
+    }
+    
+    /* Rediseño de los links */
+    .nav-menu nav ul {
+        flex-direction: column; /* Apila los links verticalmente */
+        align-items: center; /* Centra los links */
+        gap: 20px;
+    }
+    
+    .nav-menu nav ul a {
+        font-size: 1.1rem; 
+        padding: 10px 0;
+        display: block;
+        transition: color 0.3s ease;
+    }
+
+    .nav-menu nav ul a:hover {
+        color: var(--color-acento)
+    }
+}
+
+/* ========    FIN MENU HAMBURGUESA   ======= */
+
+
+/* --- SECCIÓN HERO (Principal) --- */
 
 .seccion_heroe {
     display: grid;
@@ -253,13 +368,11 @@ nav a:hover {
     font-weight: 700;
     cursor: pointer;
     transition: transform 0.2s ease, box-shadow 0,2s ease;
-    
 }
 
 .btn_primario:hover {
     transform: scale(1.03);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.20);
-
 }
 
 .btn_fantasma_1 {
@@ -275,19 +388,6 @@ nav a:hover {
     border-color: var(--color-acento);
     color: var(--color-acento);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -334,7 +434,7 @@ nav a:hover {
 }
 
 
-/* --- 5. GRID DE PRODUCTOS (Tarjetas) --- */
+/* --- GRID DE PRODUCTOS (Tarjetas) --- */
 .productos {
     margin-top: 24px;
     margin-bottom: 24px;
@@ -442,8 +542,6 @@ nav a:hover {
 }
 
 
-
-
 /* ================================
     Sección Reseñas
 ================================ */
@@ -453,7 +551,6 @@ nav a:hover {
     margin-bottom: 40px;
     padding-top: var(--alto-header);
 }
-
 
 .reseñas_contenedor {
     max-width: 1280px; 
@@ -469,7 +566,6 @@ nav a:hover {
     font-size: 32px;
     text-align: center;
 }
-
 
 .reseñas_subtitulos {
     text-align: center;
@@ -642,7 +738,6 @@ textarea::placeholder {
 }
 
 
-
 /* =========================================================
     FOOTER
 ========================================================= */
@@ -665,7 +760,6 @@ textarea::placeholder {
     margin-bottom: 20px;
     font-size: 1em;
 }
-
 
 .informacion_legal ul {
     display: flex;
@@ -794,9 +888,6 @@ textarea::placeholder {
 }
 
 
-/* ----------------------------- */
-/* ----  bootstrap  ----- */
-/* ----------------------------- */
 
 /* =========================================================
    INTEGRACIÓN Y SOBREESCRITURA DE BOOTSTRAP
@@ -807,15 +898,15 @@ textarea::placeholder {
 .btn-success:hover,
 .btn-success:focus,
 .btn-success:active {
-    /* Fondo del botón: Usa tu color de acento (verde) */
+    /* Fondo del botón: Usa color de acento (verde) */
     background-color: var(--color-acento) !important; 
-    /* Borde del botón: Usa tu color de acento */
+    /* Borde del botón: Usa color de acento */
     border-color: var(--color-acento) !important;
-    /* Color del texto: Usa tu color de texto principal (blanco) */
+    /* Color del texto: Usa color de texto principal (blanco) */
     color: var(--color-texto) !important;
     
     /* Pequeño ajuste visual */
-    border-radius: var(--radius); /* Usa el radio que ya definiste */
+    border-radius: var(--radius); /* Usa el radio ya definido */
     font-weight: 600;
 }
 
@@ -881,19 +972,19 @@ textarea::placeholder {
     ESTILOS ESPECÍFICOS PARA EL CARRITO (Dark Mode Fix)
    ========================================================= */
 
-/* 1. Fondo de las tarjetas del carrito */
+/* Fondo de las tarjetas del carrito */
 #carrito_contenido .card {
     background-color: var(--color-tarjeta); /* Usa tu gris oscuro */
     color: var(--color-texto);              /* Texto blanco */
     border: 1px solid rgba(255, 255, 255, 0.05); /* Borde muy sutil */
 }
 
-/* 2. Arreglar textos secundarios (que Bootstrap pone gris oscuro y no se leen) */
+/* Arreglar textos secundarios (que Bootstrap pone gris oscuro y no se leen) */
 #carrito_contenido .text-muted {
     color: var(--color-mutado) !important;
 }
 
-/* 3. Botones de cantidad (+ / -) */
+/* Botones de cantidad (+ / -) */
 #carrito_contenido .btn-outline-secondary {
     color: var(--color-texto);
     border-color: var(--color-mutado);
@@ -906,7 +997,7 @@ textarea::placeholder {
     color: #042204; /* Texto oscuro para contraste */
 }
 
-/* 4. Botón de eliminar (X) - Estilo minimalista */
+/* Botón de eliminar (X) - Estilo minimalista */
 #carrito_contenido .btn-danger {
     background-color: transparent;
     border: 1px solid #ff6b6b;
@@ -919,7 +1010,7 @@ textarea::placeholder {
     color: white;
 }
 
-/* 5. Ajuste de imagen en el carrito */
+/* Ajuste de imagen en el carrito */
 #carrito_contenido img {
     border-radius: 6px;
     border: 1px solid rgba(255,255,255,0.1);
@@ -927,12 +1018,11 @@ textarea::placeholder {
 
 
 
-
 /* =========================================
    ESTILOS DE MODALES LEGALES (Popups)
    ========================================= */
 
-/* 1. Fondo oscuro detrás del modal */
+/* Fondo oscuro detrás del modal */
 .modal-overlay {
     position: fixed;
     inset: 0; /* Ocupa toda la pantalla */
@@ -950,7 +1040,7 @@ textarea::placeholder {
     pointer-events: all;
 }
 
-/* 2. La cajita del modal */
+/* La cajita del modal */
 .modal-legal {
     position: fixed;
     top: 50%;
@@ -978,7 +1068,7 @@ textarea::placeholder {
     transform: translate(-50%, -50%) scale(1);
 }
 
-/* 3. Elementos internos */
+/* Elementos internos */
 .modal-titulo {
     font-family: 'Poppins', sans-serif;
     color: var(--color-acento);

@@ -9,6 +9,24 @@
 
     <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
 
+
+    <!-- meta para SEO basico -->
+
+    <meta name="description"
+        content="En Bizitzal encontrarás la descripción completa de cada producto artesanal: materiales, medidas, colores y todo lo que necesitas para elegir el kit ideal." />
+
+    <meta name="keyword" content="tejido, resina, lettering, velas, pintura, origami, kits artesanales, manualidades">
+
+    <meta property="og:title" content="Bizitzal | Producto">
+    <meta property="og:description"
+        content="Explora la magia detrás de cada creación artesanal: kits, amigurumis y piezas únicas hechas a mano especialmente por vos.">
+    <meta property="og:image" content="asset/img/Logo-negro-copia.jpg">
+    <meta property="og:url" content="https://shadow-itzal.github.io/Bizitzal/pages/descripcion_producto.html">
+    <meta property="og:type" content="website">
+
+    <link rel="canonical" href="https://shadow-itzal.github.io/Bizitzal/pages/descripcion_producto.html">
+
+
     <!-- Google Fonts -->
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;700&family=Poppins:wght@600;800&display=swap"
@@ -31,8 +49,9 @@
     <header>
         <div class="container nav">
 
+            <!-- Lado izquierdo: marca / logo -->
             <div class="marca">
-                <img src="../asset/img/Logo-negro-copia.jpg" alt="Logo Bizitzal" />
+                <a href="../index.html"><img src="../asset/img/Logo-negro-copia.jpg" alt="Logo Bizitzal" /></a>
                 <div>
                     <h1>Bizitzal</h1>
                     <div class="palabras">
@@ -41,17 +60,30 @@
                 </div>
             </div>
 
-            <nav>
-                <ul>
-                    <li><a href="../index.html">Inicio</a></li>
-                    <li><a href="../index.html#kits">Kits</a></li>
-                    <li><a href="../index.html#reviews">Reseñas</a></li>
-                    <li><a href="../index.html#about">Nosotros</a></li>
-                    <li><a href="../index.html#contact">Contacto</a></li>
-                </ul>
-            </nav>
 
-            <div class="carrito" id="boton_carrito">
+            <!-- menu hamburguesa para celulares y tablets -->
+            <button class="nav-toggle" id="nav_toggle_btn" aria-label="abrir menu">
+                <span class="hamburguesa"></span>
+                <span class="hamburguesa"></span>
+                <span class="hamburguesa"></span>
+            </button>
+
+
+            <!-- Navegación principal (enlaces internos) -->
+            <div class="nav-menu" id="nav_menu_list">
+                <nav>
+                    <ul class="nav-links">
+                        <li><a href="../index.html">Inicio</a></li>
+                        <li><a href="../index.html#kits">Kits</a></li>
+                        <li><a href="../index.html#reviews">Reseñas</a></li>
+                        <li><a href="../index.html#about">Nosotros</a></li>
+                        <li><a href="../index.html#contact">Contacto</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+            <!-- Icono de carrito con contador (se actualiza por JS) -->
+            <div class="carrito" id="boton_carrito" aria-label="Abrir carrito">
                 <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                     <path d="M6 6h15l-1.5 9h-12L4 2H2" stroke="white" stroke-width="1.2" stroke-linecap="round"
                         stroke-linejoin="round" opacity="0.9" />
@@ -269,8 +301,7 @@
         <h3 class="modal-titulo">Política de Privacidad</h3>
         <div class="modal-contenido">
             <p>En Bizitzal respetamos tu privacidad.</p>
-            <p>Recopilamos únicamente información esencial (nombre, correo) para mejorar tu experiencia o enviarte el
-                newsletter si te suscribes.</p>
+            <p>Recopilamos únicamente información esencial (nombre, correo) para mejorar tu experiencia o enviarte el newsletter si te suscribes.</p>
             <p>No compartimos tus datos con terceros sin tu autorización.</p>
         </div>
         <button class="btn_primario mt-3" onclick="cerrarModal('modal_privacidad')">Aceptar</button>
@@ -281,10 +312,8 @@
         <h3 class="modal-titulo">Política de Envíos</h3>
         <div class="modal-contenido">
             <p><b>1. Zonas de cobertura:</b> Realizamos envíos a todo el país a través de correo privado.</p>
-            <p><b>2. Tiempos de procesamiento:</b> Los pedidos se preparan en 24-48 horas hábiles una vez confirmado el
-                pedido.</p>
-            <p><b>3. Costos y Coordinación:</b> Al finalizar tu solicitud, nos pondremos en contacto contigo para
-                cotizar el envío exacto a tu domicilio y elegir el transporte que prefieras.</p>
+            <p><b>2. Tiempos de procesamiento:</b> Los pedidos se preparan en 24-48 horas hábiles una vez confirmado el pedido.</p>
+            <p><b>3. Costos y Coordinación:</b> Al finalizar tu solicitud, nos pondremos en contacto contigo para cotizar el envío exacto a tu domicilio y elegir el transporte que prefieras.</p>
         </div>
         <button class="btn_primario mt-3" onclick="cerrarModal('modal_envios')">Entendido</button>
     </div>
@@ -294,18 +323,14 @@
         <h3 class="modal-titulo">Política de Devoluciones</h3>
         <div class="modal-contenido">
             <p>Queremos que ames tu kit Bizitzal. Si no es así, tienes opciones:</p>
-            <p><b>Plazo:</b> Tienes 30 días corridos desde que recibes tu compra para solicitar un cambio o devolución.
-            </p>
-            <p><b>Condiciones:</b> El producto debe estar sin uso, en su empaque original y con todas las piezas
-                completas.</p>
-            <p><b>Reembolsos:</b> Una vez recibido y revisado el producto, procesaremos el reembolso en el mismo medio
-                de pago utilizado.</p>
+            <p><b>Plazo:</b> Tienes 30 días corridos desde que recibes tu compra para solicitar un cambio o devolución.</p>
+            <p><b>Condiciones:</b> El producto debe estar sin uso, en su empaque original y con todas las piezas completas.</p>
+            <p><b>Reembolsos:</b> Una vez recibido y revisado el producto, procesaremos el reembolso en el mismo medio de pago utilizado.</p>
         </div>
         <button class="btn_primario mt-3" onclick="cerrarModal('modal_devoluciones')">Aceptar</button>
     </div>
 
-
-
+    
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
