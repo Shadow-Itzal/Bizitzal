@@ -6,100 +6,118 @@
 
 # 💻 Proyecto Final 🎓✨
 
+# 🌿 Bizitzal – Kits Creativos & DIY
 
-# 🌿 Bizitzal – Sitio web de kits creativos
+**Bizitzal** es un e-commerce conceptual que celebra la creatividad y el trabajo manual 🌸✨.  
+Este proyecto ha evolucionado de una vitrina estática a una **aplicación web dinámica**, ofreciendo una experiencia de usuario fluida, moderna y funcional.
 
-**Bizitzal** es un sitio web que celebra la creatividad y el trabajo manual 🌸✨.  
-Ofrece una experiencia visual limpia, moderna y natural, centrada en mostrar **kits artesanales y creativos** que inspiran a las personas a reconectarse con su lado artístico.  
+El sitio permite a los usuarios explorar **kits artesanales**, ver detalles dinámicos de cada producto y gestionar un **carrito de compras** funcional, todo construido con tecnologías web estándar y buenas prácticas de desarrollo.
+ 
+---
 
-El objetivo del sitio es servir como **vitrina digital** para productos creativos, permitiendo que los usuarios descubran diferentes kits, aprendan sobre ellos y encuentren inspiración.  
-En el futuro, se proyecta evolucionar hacia una **plataforma interactiva** con integración de **JavaScript** y otras tecnologías para mejorar la experiencia del usuario.
+## ✨ Características Principales
+
+El proyecto incorpora lógica de programación para brindar interactividad real:
+
+* 🛒 **Sistema de Carrito de Compras:** Gestión de estado global mediante `localStorage`. Permite agregar, eliminar y modificar cantidades de productos persistiendo la información entre recargas.
+* 📄 **Carga Dinámica de Datos:** Los productos y sus detalles se renderizan consumiendo archivos **JSON** (simulando una API), evitando el contenido *hardcodeado* en las páginas de detalle.
+* 📱 **Diseño Responsive & UI Moderna:**
+    * Menú hamburguesa con animación SVG personalizada.
+    * Notificaciones tipo *Toast* para feedback visual al usuario.
+    * Modales interactivos para información legal.
+    * Efectos de *Fade-in* y Loader de carga.
+* 🔗 **Navegación Inteligente:** Detección de rutas relativas para gestionar la navegación entre el `index` y las sub-páginas (`/pages/`).
 
 ---
 
 ## 🧭 Estructura del repositorio
 
-```
+El proyecto mantiene una arquitectura organizada separando estructura, estilos y lógica:
+
+```text
 Bizitzal/
 │
 ├── asset/
-│   └── img/  # Recursos gráficos e ilustraciones utilizadas en el sitio
+│   └── img/           # Recursos gráficos (logos, productos, banners)
 │
 ├── css/
-│   ├── estilos.css  # Hoja principal de estilos
-│   
-├── index.html  # Página principal del sitio web
+│   └── styles.css     # Hoja de estilos global (Variables CSS, Flexbox, Grid)
 │
-├── favicon.ico  # Ícono del sitio
+├── data/              # Simulación de Base de Datos
+│   ├── kits_bizitzal.json
+│   ├── proximos_kits.json
+│   └── relacionados_bizitzal.json
 │
-├── README.md  # Este archivo 📖
+├── js/                # Lógica del Frontend
+│   ├── script.js              # Lógica global (Nav, Modales, Toast, Utils)
+│   ├── carrito.js             # Lógica específica de la página del carrito
+│   └── descripcion_producto.js # Lógica de renderizado de producto (URL params)
 │
-└── .gitignore  # Archivos o carpetas que Git debe ignorar
+├── pages/             # Páginas internas
+│   ├── carrito.html
+│   └── descripcion_producto.html
+│
+├── index.html         # Landing Page principal
+├── favicon.ico
+├── README.md
+└── .gitignore
 ```
-
-Cada carpeta cumple una función específica:
-- **asset/**: contiene imágenes e íconos del sitio.  
-- **css/**: aloja las hojas de estilo, que definen el diseño visual, paleta de colores, fuentes y disposición general.  
-- **index.html**: estructura principal del sitio, donde se combinan los recursos visuales.  
-- **favicon.ico**: pequeño ícono que representa al sitio en la pestaña del navegador.  
-- **README.md**: documentación general del proyecto.  
 
 ---
 
 ## 💻 Tecnologías utilizadas
 
-El proyecto está construido con una base sólida de tecnologías web estándar:
+El proyecto está construido utilizando estándares modernos de desarrollo web:
 
-| Tecnología | Descripción |
-|-------------|--------------|
-| 🧱 **HTML5** | Estructura semántica del sitio. |
-| 🎨 **CSS3** | Diseño visual, tipografía, colores y disposición adaptable. |
-| 🖼 **Recursos gráficos (imágenes, íconos)** | Elementos visuales que refuerzan la identidad de Bizitzal. |
-| 🧩 **Git & GitHub** | Control de versiones y alojamiento del repositorio. |
+| Tecnología | Uso en el proyecto |
+|------------|--------------|
+| 🧱 HTML5	| Estructura semántica y accesible.
+| 🎨 CSS3	| Diseño visual, animaciones, CSS Variables, Flexbox y Grid Layout.
+| ⚡ JavaScript (ES6+)	| Lógica de negocio, manipulación del DOM, Async/Await para fetch de datos y manejo de localStorage.
+| 🅱️ Bootstrap 5	| Utilizado puntualmente en páginas internas (producto y carrito) para acelerar el maquetado de componentes complejos (Carruseles, Cards).
+| 📄 JSON	| Almacenamiento de datos estructurados para productos y relaciones.
 
-💡 En futuras versiones, se integrará **JavaScript (ES6)** para añadir interactividad y dinamismo, como animaciones, secciones interactivas y carga de contenido desde API.
 
 ---
 
 ## 🚀 Cómo visualizar el proyecto
 
-Puedes ver el sitio localmente de dos maneras:
+Para asegurar el correcto funcionamiento de las peticiones fetch a los archivos JSON, es necesario ejecutar el proyecto en un servidor local.
 
-1. **Descargar o clonar el repositorio**
+1. **Clonar el repositorio:**
 
    ```bash
-   git clone https://github.com/Shadow-Itzal/Bizitzal.git
-   cd Bizitzal
-   ```
+    git clone [https://github.com/Shadow-Itzal/Bizitzal.git](https://github.com/Shadow-Itzal/Bizitzal.git)
+    cd Bizitzal
+    ```
 
-2. **Abrir el archivo principal**
+2. **Ejecutar:**
 
-   - Haz doble clic en `index.html`, o  
-   - Usa un servidor local (por ejemplo, la extensión *Live Server* en VSCode) para una experiencia más fluida.
+* Si usas VS Code, instala la extensión Live Server.
 
----
-
-## 🌱 Futuras mejoras
-
-Bizitzal está en constante evolución 🌿.  
-Algunas ideas para futuras versiones:
-
-- 🪄 Incorporar **JavaScript** para navegación fluida e interactividad.  
-- 📱 Mejorar la **adaptabilidad móvil** (responsive design).  
-- 🎬 Agregar animaciones suaves y efectos visuales.  
-- 🛍 Crear una sección dinámica para mostrar productos desde una base de datos o API.  
-- 🧭 Implementar un sistema de navegación más avanzado.  
-- 🧠 Optimizar SEO y accesibilidad.
-
+* Haz clic derecho en index.html y selecciona "Open with Live Server".
 
 ---
 
-## 🪶 Créditos y agradecimientos
+## 🌱 Próximos Pasos
+Aunque el sitio ya es funcional, el camino de Bizitzal continúa:
 
-- Creado con dedicación por [Shadow-Itzal](https://github.com/Shadow-Itzal)  
-- Inspirado en el arte, la naturaleza y la creatividad compartida 🌸
+* 💳 Pasarela de Pagos: Integración real con APIs de pago (Stripe/MercadoPago).
+
+* 🔐 Backend: Migración de archivos JSON a una base de datos real (Node.js/MongoDB o Firebase).
+
+* 🔎 Filtros Avanzados: Buscador y filtrado por categorías en tiempo real.
+
+* 📧 Automatización: Conexión del newsletter con servicios de email marketing.
+
 ---
 
+## 🪶 Créditos
+
+- Diseño y Desarrollo: [Shadow-Itzal](https://github.com/Shadow-Itzal)  
+- Concepto: Inspirado en la belleza de crear algo propio desde cero. 🌸
+
+---
 
 <p align="center">
   <img src="https://capsule-render.vercel.app/api?type=waving&color=0:32cd32,100:006400&height=160&section=footer&desc=Semicolons%20are%20life;%20missing%20semicolons%20are%20pain.%20😅&fontSize=40" />
