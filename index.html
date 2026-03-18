@@ -357,15 +357,14 @@
 
             <div class="contacto tarjeta" id="contact" style="padding:18px">
                 <h3 class="titulos">Contacto</h3>
-                <form id="formulario_contacto" action="https://formspree.io/f/xblplrkl" method="POST">
+                <!-- en action poner direccion de formspree.io -->
+                <form id="formulario_contacto" action="" method="POST">
                     <input type="text" id="entrada_nombre" name="nombre" placeholder="Tu nombre" required />
                     <input type="email" id="entrada_correo" name="email" placeholder="Tu correo" required />
-                    <textarea id="entrada_mensaje" name="mensaje" rows="5" placeholder="¿En qué podemos ayudarte?"
-                        required></textarea>
+                    <textarea id="entrada_mensaje" name="mensaje" rows="5" placeholder="¿En qué podemos ayudarte?" required></textarea>
                     <div style="display:flex;gap:8px;align-items:center">
                         <button class="btn_primario" type="submit">Enviar mensaje</button>
-                        <button class="btn_fantasma" type="button" onclick="openWhatsApp(this)">Contactar por
-                            WhatsApp</button>
+                        <button class="btn_fantasma" type="button" onclick="openWhatsApp(this)">Contactar por WhatsApp</button>
                     </div>
                 </form>
             </div>
@@ -449,7 +448,7 @@
             <div class="columna_pie_pagina columna_newsletter">
                 <h4 style="text-align: center;">Newsletter</h4>
                 <p>Suscríbete para recibir ofertas y tips creativos.</p>
-                <form id="form_newsletter" action="https://formspree.io/f/mrbyonpr" method="POST">
+                <form id="form_newsletter" action="" method="POST">
                     <div class="formulario_newsletter">
                         <input type="email" id="entrada_newsletter" name="email" required
                             placeholder="Escribe tu correo electrónico" />
@@ -511,8 +510,7 @@
         <h3 class="modal-titulo">Política de Devoluciones</h3>
         <div class="modal-contenido">
             <p>Queremos que ames tu kit Bizitzal. Si no es así, tienes opciones:</p>
-            <p><b>Plazo:</b> Tienes 30 días corridos desde que recibes tu compra para solicitar un cambio o devolución.
-            </p>
+            <p><b>Plazo:</b> Tienes 30 días corridos desde que recibes tu compra para solicitar un cambio o devolución.</p>
             <p><b>Condiciones:</b> El producto debe estar sin uso, en su empaque original y con todas las piezas completas.</p>
             <p><b>Reembolsos:</b> Una vez recibido y revisado el producto, procesaremos el reembolso en el mismo medio de pago utilizado.</p>
         </div>
